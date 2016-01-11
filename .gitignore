@@ -14,3 +14,6 @@
 
 # simplecov
 coverage
+
+# hide our dev environment variables
+/config/initializers/development_env_vars.rb
