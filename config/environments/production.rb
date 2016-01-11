@@ -72,7 +72,7 @@ Rails.application.configure do
     port:           ENV['MAILGUN_SMTP_PORT'],
     address:        'smtp.mailgun.org',
     user_name:      ENV['MAILGUN_USER_NAME'],
-    password:       ENV['MAILGUN_PASSWORD']
+    password:       ENV['MAILGUN_PASSWORD'],
     authentication: :plain,
   }
 
