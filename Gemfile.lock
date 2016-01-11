@@ -86,7 +86,6 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    mailgunner (2.2.1)
     mime-types (2.99)
     mini_portile2 (2.0.0)
     minitest (5.8.3)
@@ -197,7 +196,6 @@ DEPENDENCIES
   haml (~> 4.0, >= 4.0.7)
   jbuilder (~> 2.0)
   jquery-rails
-  mailgunner
   pg (~> 0.15)
   rails (= 4.2.5)
   rspec-rails
