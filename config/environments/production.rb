@@ -66,7 +66,7 @@ Rails.application.configure do
   # ActionMailer to mailtrap for testing user email confirmation
   config.action_mailer.default_url_options = { host: 'debater.herokuapp.com'}
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.mailgun_settings = {
     domain:         'debater.herokuapp.com',
     port:           ENV['MAILGUN_SMTP_PORT'],
