@@ -1,3 +1,8 @@
 // include all of your stylesheets here
-// custom files
+// Materialize CSS
+@import "materialize";
+// custom site-wide files incl variables and mixins
 @import 'base/globals';
+
+// controller-specific scss
+@import 'styles/greetings.scss'

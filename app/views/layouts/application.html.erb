@@ -5,17 +5,32 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <!-- this is for pulling in the materialize icon set -->
+  <%= stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons", media: 'all', 'data-turbolinks-track' => true %>
 </head>
 <body>
 <nav>
-  <div>
+  <div class="nav-wrapper orange darken-3">
+    <%= link_to 'debater', root_path, class: "brand-logo", id: "nav-logo" %>
+    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
     <% if current_user %>
-      <%= link_to current_user.email, edit_user_registration_path(current_user) %>
-      <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+      <li><%= link_to current_user.email, edit_user_registration_path(current_user) %></li>
+      <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
     <% else %>
-      <%= link_to 'Sign in', new_user_session_path %>
-      <%= link_to 'Sign up', new_user_registration_path %>
+      <li><%= link_to 'Sign in', new_user_session_path %></li>
+      <li><%= link_to 'Sign up', new_user_registration_path %></li>
     <% end %>
+    </ul>
+    <ul id="mobile-demo" class="side-nav">
+    <% if current_user %>
+      <li><%= link_to current_user.email, edit_user_registration_path(current_user) %></li>
+      <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+    <% else %>
+      <li><%= link_to 'Sign in', new_user_session_path %></li>
+      <li><%= link_to 'Sign up', new_user_registration_path %></li>
+    <% end %>
+    </ul>
   </div>
 </nav>
 
@@ -25,7 +40,9 @@
   <p class="alert"><%= alert %></p>
 <% end %>
 
-<%= yield %>
+<div class="container" id="main-container">
+  <%= yield %>
+</div>
 
 </body>
 </html>

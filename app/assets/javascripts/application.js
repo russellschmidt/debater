@@ -11,6 +11,12 @@
 // about supported directives.
 //
 //= require jquery
+//= require materialize-sprockets
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+// main nav bar hamburger-on-mobile script
+$(document).ready(function(){
+  $(".button-collapse").sideNav();
+})
