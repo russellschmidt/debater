@@ -76,7 +76,7 @@ Rails.application.configure do
 =end
   config.action_mailer.default_url_options = { host: 'debater.herokuapp.com'}
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :mailgun
   config.action_mailer.smtp_settings = {
     port:           ENV['MAILGUN_SMTP_PORT'],
     address:        ENV['MAILGUN_SERVER'],
