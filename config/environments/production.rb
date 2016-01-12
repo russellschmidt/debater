@@ -66,7 +66,17 @@ Rails.application.configure do
   # ActionMailer to mailtrap for testing user email confirmation
   config.action_mailer.default_url_options = { host: 'debater.herokuapp.com'}
   config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.smtp_settings = {
+    port:             '587',
+    address:          'smtp.mandrillapp.com',
+    user_name:        ENV['MANDRILL_USERNAME'],
+    password:         ENV['MANDRILL_APIKEY'],
+    domain:           'debater.herokuapp.com',
+    authentication:   :plain
+  }
   config.action_mailer.delivery_method = :smtp
+
+=begin
   config.action_mailer.smtp_settings = {
     domain:         'debater.herokuapp.com',
     port:           ENV['MAILGUN_SMTP_PORT'],
@@ -74,7 +84,7 @@ Rails.application.configure do
     user_name:      ENV['MAILGUN_SMTP_LOGIN'],
     password:       ENV['MAILGUN_SMTP_PASSWORD'],
   }
-
+=end
 
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
