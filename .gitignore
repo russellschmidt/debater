@@ -19,4 +19,4 @@ coverage
 /config/initializers/development_env_vars.rb
 
 # hide precompiled assets from heroku
-/public/assets/
+/public/assets/**
