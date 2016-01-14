@@ -2,7 +2,7 @@
 // Materialize CSS
 @import "materialize";
 // custom site-wide files incl variables and mixins
-@import 'base/globals';
-
+@import 'base/variables.scss';
 // controller-specific scss
+@import 'styles/sitewide.scss';
 @import 'styles/greetings.scss'
