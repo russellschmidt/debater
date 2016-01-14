@@ -17,3 +17,6 @@ coverage
 
 # hide our dev environment variables
 /config/initializers/development_env_vars.rb
+
+# hide precompiled assets from heroku
+/public/assets/
