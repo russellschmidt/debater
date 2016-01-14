@@ -1,5 +1,5 @@
 class DebatesController < ApplicationController
-  before_action :ready_debate, only [:show, :edit, :update, :destroy]
+  before_action :ready_debate, only: [:show, :edit, :update, :destroy]
 
   def index
     @debates = Debate.all
@@ -40,6 +40,7 @@ class DebatesController < ApplicationController
   end
 
   def destroy
+    #only if user is admin
   end
 
 
