@@ -1,0 +1,14 @@
+.container.debate-container
+  .row
+    .col.s12
+      %h1 all debates
+  .row
+    - @debates.each do |d|
+      .row
+        .col.s8
+          = link_to d.title, debate_path(d)
+        .col.s4
+          = d.user.email
+      .row
+        .col.s12
+          = d.topic
