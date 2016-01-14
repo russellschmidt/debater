@@ -35,9 +35,13 @@
 </nav>
 
 <% if notice %>
-  <p class="notice"><%= notice %></p>
+  <script>
+    Materialize.toast("<%= notice %>", 4000)
+  </script>
 <% elsif alert %>
-  <p class="alert"><%= alert %></p>
+  <script>
+    Materialize.toast("<%= alert %>", 4000)
+  </script>
 <% end %>
 
 <div class="container" id="main-container">
