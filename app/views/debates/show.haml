@@ -1,0 +1,11 @@
+.row
+  .col.s12
+    %h1 #{@debate.title}
+.row
+  .col.s4.offset-s8
+    %h5 #{@debate.user.email}
+.row
+  .col.s12
+    = @debate.topic
+.row
+  = link_to 'Back', debates_path, class: "waves-effect btn-flat"

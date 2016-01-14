@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html class="<%= controller.controller_name %>">
 <head>
   <title>Debater</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <!-- this is for pulling in the materialize icon set -->
   <%= stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons", media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= controller.controller_name %>">
 <nav>
   <div class="nav-wrapper orange darken-3">
     <%= link_to 'debater', root_path, class: "brand-logo", id: "nav-logo" %>

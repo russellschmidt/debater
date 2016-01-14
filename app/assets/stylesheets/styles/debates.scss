@@ -1,18 +1,19 @@
-html {
+body.debates {
   background: #fff;
-}
-
-body {
   color: #000;
 }
 
-.container {
+.debate-container {
   margin: 2% auto;
   padding: 9px;
   max-width: 960px;
   background-color: #fff;
 }
 
-.container form input {
+.debate-container form input {
   padding-left: 10px;
+}
+
+.btn-flat {
+  color: $maintextcolor;
 }

@@ -1,22 +1,30 @@
-html {
+body.greetings {
   background: url('https://s3-us-west-1.amazonaws.com/debaterbucket1/debater.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}
-
-body {
   color: $maintextcolor;
 }
 
-.container {
-  margin: 20% auto;
+.greeting-container {
+  margin: 40% auto;
+  min-bottom: 50px;
   padding: 9px;
-  max-width: 630px;
+  max-width: 960px;
   background-color: rgba(0.65, 0.65, 0.65, 0.75);
 }
 
-.container form input {
+.greeting-container input {
   padding-left: 10px;
+  background-color: #fff;
+}
+
+.greeting-container .row {
+  padding: 0 4%;
+}
+
+.greeting-container .row a {
+  color: #fff;
+  padding: 0 2px;
 }

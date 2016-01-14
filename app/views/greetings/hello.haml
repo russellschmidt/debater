@@ -1,6 +1,12 @@
-.row
-  %h1 Hello World
-.row
-  %h2 Welcome to debater
-.row
-  =link_to 'See debates', debates_path
+.container.greeting-container
+  .row
+    %h1 welcome to debater
+  .row
+    %p
+      =link_to 'Sign up', new_user_registration_path, class: "waves-effect orange btn"
+      for a new free account or
+      =link_to 'sign in', new_user_session_path, class: "waves-effect orange btn"
+      to your existing account to start your own debates or join one in progress.
+    %p
+      If you don't want to sign in, you can browse the debates by clicking
+      =link_to 'See debates', debates_path, class: "btn orange waves-effect"
