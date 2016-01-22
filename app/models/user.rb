@@ -5,4 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_many :debates
+  has_many :disputes
+  has_many :arguments
+  has_many :premises
 end
