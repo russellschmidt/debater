@@ -3,12 +3,11 @@
     .col.s12
       %h1 all debates
   .row
-    - @debates.each do |d|
-      .row
-        .col.s8
-          = link_to d.title, debate_path(d)
-        .col.s4
-          = d.user.email
-      .row
-        .col.s12
-          = d.topic
+    .col.s12
+      %h4 Debates by Topic
+  .row
+    .col.s12
+      %p=link_to 'Civil Disobedience in a democracy is morally justified', ''
+  .row
+    .col.s12
+      %p=link_to 'In the U.S.A., private ownership of handguns ought to be banned.',''
