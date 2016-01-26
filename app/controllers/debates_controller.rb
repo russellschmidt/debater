@@ -17,10 +17,10 @@ class DebatesController < ApplicationController
 
     if @debate.save
       flash[:notice] = "New debate created"
-      redirect_to :index
+      redirect_to @debates
     else
       flash[:alert] = "Problem with your new debate. Please try again."
-      render :new
+      render 'new'
     end
   end
 
@@ -33,10 +33,10 @@ class DebatesController < ApplicationController
 
     if @debate.update_attributes(debate_param)
       flash[:notice] = "Debate updated"
-      redirect_to debate_path(@debate)
+      redirect_to @debate
     else
       flash[:alert] = "Update didn't work. Please try again."
-      render :edit
+      render 'edit'
     end
   end
 
