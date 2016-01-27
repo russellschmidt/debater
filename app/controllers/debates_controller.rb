@@ -48,7 +48,7 @@ class DebatesController < ApplicationController
 
   private
   def debate_param
-    params.require(:debates).permit(:resolution, :creator_id)
+    params.require(:debate).permit(:resolution, :creator_id)
   end
 
 end
