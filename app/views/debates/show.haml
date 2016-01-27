@@ -1,40 +1,74 @@
 .row
   .col.s12
-    %h4 Resolved: #{@debate.resolution}
+    %h4 Lincoln-Douglas Debate
+    %h5 Resolved: #{@debate.resolution}
 .row
   .col.s4.offset-s8
-    created #{localize(@debate.created_at, format: :long)}
+    created: #{localize(@debate.created_at, format: :long)}
     %br
-    updated #{localize(@debate.created_at, format: :long)}
-    %br
-    = @debate.creator.email
+    last updated: #{localize(@debate.created_at, format: :long)}
 .row
   .col.s2
-    %h5 Speech:
-.row
+    .speech-container
+      .row
+        %h5 1AC
+      .row
+        reuvenschmidt@gmail.com
+      .row
+        %b Value
+      .row
+        Social Justice
+      .row
+        %b Criterion:
+      .row
+        Categorical Imperative (Kant)
+      .row
+        %b Thesis
+      .row
+        To defend against a tyrannical and/or exploitative majority, citizens are compelled to acts of civil disobedience (non-violent rule breaking) to protest their condition.
+      .row
+        %ol
+          %li US Civil Rights movement
+          %ol
+            %li Democracy (USA) exploited & oppressed a black minority
+            %li Slavery and later Jim Crow codified and legalized majority oppression of minority
+            %li Civil disobedience brought attention, reform, expansion of vote and democracy
   .col.s2
-    1AC
-.row
-  .col.s2
-    %h5 Value:
-.row
-  .col.s2
-    Social Justice
-.row
-  .col.s2
-    %h5 Criterion:
-.row
-  .col.s2
-    Categorical Imperative (Kant)
-.row
-  .col.s2
-    %h5 Thesis
-.row
-  .col.s2
-    To defend against a tyrannical and/or exploitative majority, citizens are compelled to acts of civil disobedience (non-violent rule breaking) to protest their condition.
-.row
-  .col.s2
-    = link_to 'Edit', edit_debate_path(@debate), class: "waves-effect btn-flat"
-    = link_to 'Delete', debate_path(@debate), method: :delete, class: "waves-effect btn-flat", date: {confirm: "Are you sure you want to delete this debate?"}
+    .speech-container
+      .row
+        %h5 1NC
+      .row
+        bob@aol.com
+      .row
+        %b Value
+      .row
+        Social Harmony
+      .row
+        %b Criterion
+      .row
+        General Will (Rousseau)
+      .row
+        %b Thesis
+      .row
+        Legitimate laws are founded on the will of citizens. Violating these laws are primae facie undemocratic and immoral, and undermine democratic institutions.
+      .row
+        %ol
+          %li Slippery Slope to Violence
+          %ol
+            %li Unionizing labor protests turn to anarchist bombings and assassinations
+            %li Civil Rights movements turn to riots in the 1960s, white flight and ghettoization
+            %li KKK post-war citizens group turns into a terrorist organization
+      .row
+        %h5 Rebuttals
+      .row
+        %ol
+          %li Democracy, not disobedience, helped Civil Rights
+          %ol
+            %li Speeches of leaders like Dr. King changed majority opinion
+            %li Johnson's Great Society program
+            %li Supreme Court led desegregation
+            %li It was democratic institutions that saved democracy, not law breaking
 .row
   = link_to 'Back', debates_path, class: "waves-effect btn-flat"
+  = link_to 'Edit', edit_debate_path(@debate), class: "waves-effect btn-flat"
+  = link_to 'Delete', debate_path(@debate), method: :delete, class: "waves-effect btn-flat", date: {confirm: "Are you sure you want to delete this debate?"}
