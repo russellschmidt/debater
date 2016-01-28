@@ -1,7 +1,7 @@
 class DebatesController < ApplicationController
 
   def index
-    @debates = Debate.all
+    @debates = Debate.all.order("updated_at DESC")
   end
 
   def show
@@ -15,7 +15,9 @@ class DebatesController < ApplicationController
   def create
     @debate = Debate.new(debate_param)
     # require a sign in in order to save or create debates
-    @debate.creator = current_user
+    if current_user
+      @debate.creator = current_user
+    end
 
     if @debate.save
       flash[:notice] = "New debate created"
