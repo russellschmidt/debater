@@ -1,11 +1,11 @@
 class DebatesController < ApplicationController
+  before_action :find_debate, only: [:show, :edit, :update, :destroy]
 
   def index
     @debates = Debate.all.order("updated_at DESC")
   end
 
   def show
-    @debate = Debate.find(params[:id])
   end
 
   def new
@@ -29,12 +29,9 @@ class DebatesController < ApplicationController
   end
 
   def edit
-    @debate = Debate.find(params[:id])
   end
 
   def update
-    @debate = Debate.find(params[:id])
-
     if @debate.update_attributes(debate_param)
       flash[:notice] = "Debate updated"
       redirect_to(@debate)
@@ -45,7 +42,7 @@ class DebatesController < ApplicationController
   end
 
   def destroy
-    Debate.find(params[:id]).destroy
+    @debate.destroy
     flash[:notice] = "Debate deleted"
     redirect_to debates_path
   end
@@ -53,6 +50,10 @@ class DebatesController < ApplicationController
   private
   def debate_param
     params.require(:debate).permit(:resolution, :creator_id)
+  end
+
+  def find_debate
+    @debate = Debate.find(params[:id])
   end
 
 end
