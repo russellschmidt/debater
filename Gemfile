@@ -55,4 +55,5 @@ end
 
 group :production do
   gem 'mailgunner'
+  gem 'rails_12factor'
 end
