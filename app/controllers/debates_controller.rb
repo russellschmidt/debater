@@ -14,13 +14,15 @@ class DebatesController < ApplicationController
 
   def create
     @debate = Debate.new(debate_param)
+    # require a sign in in order to save or create debates
+    @debate.creator = current_user
 
     if @debate.save
       flash[:notice] = "New debate created"
-      redirect_to @debates
+      redirect_to(@debate)
     else
       flash[:alert] = "Problem with your new debate. Please try again."
-      render 'new'
+      render :new
     end
   end
 
@@ -33,17 +35,17 @@ class DebatesController < ApplicationController
 
     if @debate.update_attributes(debate_param)
       flash[:notice] = "Debate updated"
-      redirect_to @debate
+      redirect_to(@debate)
     else
       flash[:alert] = "Update didn't work. Please try again."
-      render 'edit'
+      render :edit
     end
   end
 
   def destroy
     Debate.find(params[:id]).destroy
     flash[:notice] = "Debate deleted"
-    redirect_to :index
+    redirect_to debates_path
   end
 
   private

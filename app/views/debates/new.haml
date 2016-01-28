@@ -3,3 +3,9 @@
     .col.s12
       %h4 create new debate
   .row
+    .col.s12
+      = form_for @debate do |f|
+        = f.label :resolution
+        = f.text_field :resolution
+        = f.submit class:"btn-flat"
+        = link_to "Cancel", debates_path, class:'btn-flat'
