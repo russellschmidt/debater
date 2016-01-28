@@ -192,4 +192,4 @@
 .row
   = link_to 'Back', debates_path, class: "waves-effect btn-flat"
   = link_to 'Edit', edit_debate_path(@debate), class: "waves-effect btn-flat"
-  = link_to 'Delete', debate_path(@debate), method: :delete, class: "waves-effect btn-flat", date: {confirm: "Are you sure you want to delete this debate?"}
+  = link_to 'Delete', debate_path(@debate), method: :delete, class: "waves-effect btn-flat", data: {confirm: "Are you sure you want to delete this debate?"}

@@ -42,9 +42,14 @@ class DebatesController < ApplicationController
   end
 
   def destroy
-    @debate.destroy
-    flash[:notice] = "Debate deleted"
-    redirect_to debates_path
+    if @debate
+      @debate.destroy
+      flash[:notice] = "Debate deleted"
+      redirect_to debates_path
+    else
+      flash[:alert] = "Debate not found"
+      redirect_to debates_path
+    end
   end
 
   private
