@@ -2,8 +2,8 @@ require 'faker'
 
 FactoryGirl.define do
   factory :debate do
-    title {Faker::Lorem.sentence}
-    topic {Faker::Lorem.paragraph}
-    user  {User.find(rand(1..(User.count-1)))}
+    resolution {Faker::Lorem.sentence(20)}
+    creator_id {rand(1..User.count)}
   end
+
 end

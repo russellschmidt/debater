@@ -2,11 +2,19 @@
   .row
     %h1 welcome to debater
   .row
-    %p
-      =link_to 'Sign up', new_user_registration_path, class: "waves-effect orange btn"
-      for a new free account or
-      =link_to 'sign in', new_user_session_path, class: "waves-effect orange btn"
-      to your existing account to start your own debates or join one in progress.
-    %p
-      If you don't want to sign in, you can browse the debates by clicking
-      =link_to 'See debates', debates_path, class: "btn orange waves-effect"
+    - if current_user
+      =link_to debates_path, class: "btn-large waves-light waves-effect orange darken-3" do
+        = "See debates"
+        %i.material-icons question_answer
+      =link_to edit_user_registration_path(current_user), class: "btn-large waves-light waves-effect orange darken-3" do
+        = "Edit profile"
+        %i.material-icons perm_identity
+    - else
+      %p
+        =link_to 'Sign up', new_user_registration_path, class: "waves-effect orange btn"
+        for a new free account or
+        =link_to 'sign in', new_user_session_path, class: "waves-effect orange btn"
+        to your existing account to start your own debates or join one in progress.
+      %p
+        If you don't want to sign in, you can browse the debates by clicking
+        =link_to 'See debates', debates_path, class: "btn orange waves-effect"

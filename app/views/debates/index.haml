@@ -1,14 +1,25 @@
 .container.debate-container
   .row
     .col.s12
-      %h1 all debates
+      %h4 all debates
   .row
-    - @debates.each do |d|
-      .row
-        .col.s8
-          = link_to d.title, debate_path(d)
-        .col.s4
-          = d.user.email
-      .row
-        .col.s12
-          = d.topic
+    .col.s5
+      %h5 debates by topic
+    .col.s3
+      %h5 creator
+    .col.s2
+      %h5 time created
+    .col.s2
+      %h5 last updated
+  - @debates.each do |d|
+    .row
+      .col.s5
+        = link_to d.resolution, debate_path(d)
+      .col.s3
+        = d.creator.email
+      .col.s2
+        = localize(d.created_at, format: :long)
+      .col.s2
+        = localize(d.updated_at, format: :long)
+  .row
+    = link_to 'Create', new_debate_path, class: "waves-effect btn-flat"
