@@ -2,7 +2,7 @@ class DebatesController < ApplicationController
   before_action :find_debate, only: [:show, :edit, :update, :destroy]
 
   def index
-    @debates = Debate.all.order("updated_at DESC")
+    @debates = Debate.all.new_to_old
   end
 
   def show
