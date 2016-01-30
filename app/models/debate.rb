@@ -4,6 +4,7 @@ class Debate < ActiveRecord::Base
 
   belongs_to :creator, class_name: "User"
   has_many :positions
+  has_many :speeches, through: :positions
 
   scope :new_to_old, -> {order(updated_at: :desc)}
 end

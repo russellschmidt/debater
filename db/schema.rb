@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160129012334) do
+ActiveRecord::Schema.define(version: 20160130052306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 20160129012334) do
 
   add_index "positions", ["debate_id"], name: "index_positions_on_debate_id", using: :btree
   add_index "positions", ["user_id"], name: "index_positions_on_user_id", using: :btree
+
+  create_table "speeches", force: :cascade do |t|
+    t.integer  "position_id"
+    t.integer  "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "speeches", ["position_id"], name: "index_speeches_on_position_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -64,4 +73,5 @@ ActiveRecord::Schema.define(version: 20160129012334) do
   add_foreign_key "debates", "users", column: "creator_id"
   add_foreign_key "positions", "debates"
   add_foreign_key "positions", "users"
+  add_foreign_key "speeches", "positions"
 end
