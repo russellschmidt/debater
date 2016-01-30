@@ -1,5 +1,6 @@
 class PositionsController < ApplicationController
   before_action :find_debate
+  before_action :find_position, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
 
   def new
@@ -19,18 +20,35 @@ class PositionsController < ApplicationController
   end
 
   def edit
-    @position = @debate.positions.find(params[:id])
   end
 
   def update
+    if @position.update_attributes(position_param)
+      flash[:notice] = "Update successful"
+      redirect_to @debate
+    else
+      flash[:error] = "Update failed. Please try again"
+      render :edit
+    end
   end
 
-  def delete
+  def destroy
+    if @position.destroy
+      flash[:notice] = "Deletion successful"
+      redirect_to @debate
+    else
+      flash[:error] = "Delete failed. Please try again"
+      render :edit
+    end
   end
 
   private
   def find_debate
     @debate = Debate.find(params[:debate_id])
+  end
+
+  def find_position
+    @position = @debate.positions.find(params[:id])
   end
 
   def position_param

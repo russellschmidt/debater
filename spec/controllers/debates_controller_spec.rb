@@ -119,7 +119,7 @@ RSpec.describe DebatesController, type: :controller do
     before :each do
       sign_in my_user
     end
-    
+
     it "deletes the post" do
       delete :destroy, {id: my_debate.id}
       count = Debate.where({id: my_debate.id}).size

@@ -23,6 +23,7 @@
               %dt Debater:
               %dd #{p.user.email}
               =link_to 'edit', edit_debate_position_path(@debate, p), class: 'btn-flat'
+              =link_to 'delete', debate_position_path(@debate, p), method: :delete, class: 'btn-flat', data: {confirm: "Are you sure? Delete is forever"}
           - else
             Awaiting a debater
             = link_to 'Join', new_debate_position_path(@debate, affirmative: true, user: current_user), class: 'btn green'
@@ -40,6 +41,7 @@
               %dt Debater:
               %dd #{p.user.email}
               =link_to 'edit', edit_debate_position_path(@debate, p), class: 'btn-flat'
+              =link_to 'delete', debate_position_path(@debate, p), method: :delete, class: 'btn-flat', data: {confirm: "Are you sure? Delete is forever"}
           - else
             Awaiting a debater
             = link_to 'Join', new_debate_position_path(@debate, affirmative: false, user: current_user), class: 'btn red'
