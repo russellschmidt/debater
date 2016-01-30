@@ -2,16 +2,11 @@ class SpeechesController < ApplicationController
   before_action :find_debate
 
   def new
-    @speech = @debate.speeches.build(name: params[:name], position: params[:position])
+    @speech = @debate.speeches.build(speech_name: params[:speech_name], position: params[:position])
+    @dropdown_options = Speech.speech_names
   end
 
   def create
-  end
-
-  def edit
-  end
-
-  def update
   end
 
   def destroy

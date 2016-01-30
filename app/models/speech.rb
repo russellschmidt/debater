@@ -4,5 +4,5 @@ class Speech < ActiveRecord::Base
 
   validates :name, presence: true
 
-  enum name: [:OneAC, :OneNC, :OneAR, :OneNR, :TwoAR]
+  enum speech_name: [:OneAC, :OneNC, :OneAR, :OneNR, :TwoAR]
 end
