@@ -1,7 +1,8 @@
 FactoryGirl.define do
   factory :speech do
-    position nil
-name 1
+    position { Position.all.sample }
+    debate { Debate.all.sample }
+    name { [:OneAC, :OneNC, :OneAR, :OneNR, :TwoAR].sample }
   end
 
 end

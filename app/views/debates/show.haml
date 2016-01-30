@@ -15,7 +15,7 @@
         %dl
           %h5 Affirmative
           - if @debate.positions.aff.count > 0
-            - @debate.positions.aff.each do |p|
+            - @debate.positions.aff.first do |p|
               %dt Value:
               %dd #{p.value}
               %dt Criterion:
@@ -33,7 +33,7 @@
         %dl
           %h5 Negative
           - if @debate.positions.neg.count > 0
-            - @debate.positions.neg.each do |p|
+            - @debate.positions.neg.first do |p|
               %dt Value:
               %dd #{p.value}
               %dt Criterion:
@@ -50,33 +50,33 @@
     .speech-container
       .row
         .card-panel
-          %h5 1AC
-          .row
-            reuvenschmidt@gmail.com
-          .row
-            %b Value
-          .row
-            Social Justice
-          .row
-            %b Criterion:
-          .row
-            Categorical Imperative (Kant)
-          .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
-            =link_to @debate, class: "btn-floating orange darken-3" do
-              %i.material-icons mode_edit
-            %ul
-              %li
-                =link_to @debate, class: "btn-floating red" do
-                  %i.material-icons chat_bubble
-              %li
-                =link_to @debate, class: "btn-floating yellow" do
-                  %i.material-icons grade
-              %li
-                =link_to @debate, class: "btn-floating green" do
-                  %i.material-icons thumb_up
-              %li
-                =link_to @debate, class: "btn-floating brown" do
-                  %i.material-icons thumb_down
+          - if @debate.speeches.name == 'OneAC'
+            %h5 #{@debate.positions.speeches.enum}
+            .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
+              =link_to '', class: "btn-floating orange darken-3" do
+                %i.material-icons mode_edit
+              %ul
+                %li
+                  =link_to edit_debate_speech_path(@debate, @debate.speech.first), class: "btn-floating red" do
+                    %i.material-icons chat
+                %li
+                  =link_to @debate, class: "btn-floating yellow" do
+                    %i.material-icons grade
+                %li
+                  =link_to @debate, class: "btn-floating green" do
+                    %i.material-icons thumb_up
+                %li
+                  =link_to @debate, class: "btn-floating brown" do
+                    %i.material-icons thumb_down
+          - else
+            Create a speech
+            .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
+              =link_to '', class: "btn-floating orange darken-3" do
+                %i.material-icons add
+              %ul
+                %li
+                  =link_to new_debate_speech_path(@debate, position_id: @debate.positions.aff.first, name: 1), class: "btn-floating red" do
+                    %i.material-icons chat
       .row
         .card-panel
           %b Thesis

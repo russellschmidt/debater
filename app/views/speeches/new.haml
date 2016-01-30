@@ -1,0 +1,9 @@
+.container
+  .row.s12.l12
+    %h4 New speech: #{@speech.name}
+    = form_for [@debate, @speech] do |f|
+      =f.label :name
+      =f.select :name, options_for_select(['OneAC','OneNC','OneAR','OneNR','TwoAR'], selected: @speech.name)
+      .row
+        =f.submit class: 'btn-flat'
+        =link_to 'Back', :back, class: 'btn-flat'
