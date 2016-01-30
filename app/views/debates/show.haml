@@ -1,14 +1,48 @@
 .row
-  .col.s4.offset-s8
-    debate created: #{localize(@debate.created_at, format: :long)}
-    %br
-    last updated: #{localize(@debate.updated_at, format: :long)}
+  .col.s12.l4.offset-l8
+    .align-right
+      debate created: #{localize(@debate.created_at, format: :long)}
+      %br
+      last updated: #{localize(@debate.updated_at, format: :long)}
 .row
-  .col.s12
+  .col.s12.l12.m12
     %h4 Lincoln-Douglas Debate
     %h5 Resolved: #{@debate.resolution}
 .row
-  .col.s2
+  .col.s12.l2
+    .speech-container
+      .row.card-panel
+        %dl
+          %h5 Affirmative
+          - if @debate.positions.aff.count > 0
+            - @debate.positions.aff.each do |p|
+              %dt Value:
+              %dd #{p.value}
+              %dt Criterion:
+              %dd #{p.criterion}
+              %dt Debater:
+              %dd #{p.user.email}
+          - else
+            Awaiting a debater
+            = link_to 'Join', new_debate_position_path(@debate, affirmative: true, user: current_user), class: 'btn green'
+  .col.s12.l2
+    .speech-container
+      .row.card-panel
+        %dl
+          %h5 Negative
+          - if @debate.positions.neg.count > 0
+            - @debate.positions.neg.each do |p|
+              %dt Value:
+              %dd #{p.value}
+              %dt Criterion:
+              %dd #{p.criterion}
+              %dt Debater:
+              %dd #{p.user.email}
+          - else
+            Awaiting a debater
+            = link_to 'Join', new_debate_position_path(@debate, affirmative: false, user: current_user), class: 'btn red'
+.row
+  .col.s12.l2
     .speech-container
       .row
         .card-panel
@@ -84,7 +118,7 @@
               %li
                 =link_to @debate, class: "btn-floating brown" do
                   %i.material-icons thumb_down
-  .col.s2
+  .col.s12.l2
     .speech-container
       .row
         .card-panel

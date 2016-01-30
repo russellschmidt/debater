@@ -16,9 +16,6 @@ class DebatesController < ApplicationController
   def create
     @debate = Debate.new(debate_param)
     # require a sign in in order to save or create debates
-    if current_user
-      @debate.creator = current_user
-    end
 
     if @debate.save
       flash[:notice] = "New debate created"

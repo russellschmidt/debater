@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :debates do
-    resources :positions
+    resources :positions, except: [:index, :show]
   end
   root 'greetings#hello'
 
