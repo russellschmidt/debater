@@ -19,6 +19,7 @@ class PositionsController < ApplicationController
   end
 
   def edit
+    @position = @debate.positions.find(params[:id])
   end
 
   def update
