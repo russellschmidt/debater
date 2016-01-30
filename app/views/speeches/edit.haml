@@ -1,0 +1,13 @@
+.container
+  .row.s12.l12
+    %h4 Edit position: #{ @position.affirmative ? "Affirmative" : "Negative"}
+    = form_for [@debate, @speech] do |f|
+      =f.label :value
+      =f.text_field :value
+      =f.label :criterion
+      =f.text_field :criterion
+      =f.hidden_field :affirmative
+      =f.hidden_field :user_id
+      .row
+        =f.submit class: 'btn-flat'
+        =link_to 'Back', :back, class: 'btn-flat'

@@ -37,6 +37,10 @@ RSpec.describe DebatesController, type: :controller do
   end
 
   describe "GET new" do
+    before :each do
+      sign_in my_user
+    end
+
     it "returns http success" do
       get :new
       expect(response).to have_http_status(:success)
@@ -64,6 +68,10 @@ RSpec.describe DebatesController, type: :controller do
   end
 
   describe "GET edit" do
+    before :each do
+      sign_in my_user
+    end
+
     it "returns http success" do
       get :edit, id: my_debate
       expect(response).to have_http_status(:success)
@@ -77,6 +85,10 @@ RSpec.describe DebatesController, type: :controller do
   end
 
   describe "PUT update" do
+    before :each do
+      sign_in my_user
+    end
+
     it "updates debate with the expected attributes" do
       new_resolution = Faker::Lorem.sentence(9)
 
@@ -104,6 +116,10 @@ RSpec.describe DebatesController, type: :controller do
   end
 
   describe "DELETE destroy" do
+    before :each do
+      sign_in my_user
+    end
+
     it "deletes the post" do
       delete :destroy, {id: my_debate.id}
       count = Debate.where({id: my_debate.id}).size

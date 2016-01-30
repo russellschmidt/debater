@@ -24,6 +24,13 @@ body.debates {
   float:left;
 }
 
+.align-right {
+  text-align: right;
+  font-size: 0.8em;
+  margin: 5px 5px 0 0;
+  padding: 0;
+}
+
 ol, ul {
   list-style-position: outside;
   padding: 0 0 0 1em;
@@ -33,4 +40,23 @@ ol, ul {
 li {
   padding: 0;
   margin: 0;
+}
+
+// Argument defintion lists
+dl {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+dt {
+  padding: 0;
+  margin: 0;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+dd {
+  padding: 0 0 0 1em;
+  margin: 0 0 3px 0;
 }
