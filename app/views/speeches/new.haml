@@ -3,8 +3,10 @@
     %h4 New speech: #{@speech.speech_name}
     = form_for [@debate, @speech] do |f|
       =f.label :speech_name
-      =f.select :speech_name, @dropdown_options, selected: @speech.speech_name
-      =f.hidden_field :position_id
+      .select-div
+        =f.select :speech_name, collection: @dropdown_options, selected: @speech.speech_name
+      =f.label :position
+      =f.text_field :position_id, readonly: true
       .row
         =f.submit class: 'btn-flat'
         =link_to 'Back', :back, class: 'btn-flat'

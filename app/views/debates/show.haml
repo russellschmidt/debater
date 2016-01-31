@@ -50,34 +50,35 @@
     .speech-container
       .row
         .card-panel
-          - if @debate.speeches.name == 'OneAC'
-            %h5 #{@debate.positions.speeches.enum}
-            .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
-              =link_to '', class: "btn-floating orange darken-3" do
-                %i.material-icons mode_edit
-              %ul
-                %li
-                  =link_to edit_debate_speech_path(@debate, @debate.speech.first), class: "btn-floating red" do
-                    %i.material-icons chat
-                %li
-                  =link_to @debate, class: "btn-floating yellow" do
-                    %i.material-icons grade
-                %li
-                  =link_to @debate, class: "btn-floating green" do
-                    %i.material-icons thumb_up
-                %li
-                  =link_to @debate, class: "btn-floating brown" do
-                    %i.material-icons thumb_down
-          - else
+          - if @debate.positions.aff.first.speeches.first == nil
             Create a speech
             .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
               =link_to '', class: "btn-floating orange darken-3" do
                 %i.material-icons add
               %ul
                 %li
-                  =link_to new_debate_speech_path(@debate, position_id: @debate.positions.aff.first, speech_name: 'OneAC'), class: "btn-floating red" do
+                  =link_to new_speech_path(speech_name: 'OneAC', position: @debate.positions.aff.first), class: "btn-floating red" do
                     %i.material-icons chat
-      .row
+          - else
+            - if @debate.positions.aff.first.speeches.first.speech_name == 'OneAC'
+              %h5 #{@debate.positions.aff.first.speeches.first.speech_name}
+              .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
+                =link_to '', class: "btn-floating orange darken-3" do
+                  %i.material-icons mode_edit
+                %ul
+                  %li
+                    =link_to edit_speech_path(@debate.positions.aff.first.speeches.first), class: "btn-floating red" do
+                      %i.material-icons chat
+                  %li
+                    =link_to @debate, class: "btn-floating yellow" do
+                      %i.material-icons grade
+                  %li
+                    =link_to @debate, class: "btn-floating green" do
+                      %i.material-icons thumb_up
+                  %li
+                    =link_to @debate, class: "btn-floating brown" do
+                      %i.material-icons thumb_down
+        .row
         .card-panel
           %b Thesis
           .row
@@ -126,33 +127,34 @@
     .speech-container
       .row
         .card-panel
-          - if @debate.speeches.name == 'OneNC'
-            %h5 #{@debate.positions.speeches.enum}
-            .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
-              =link_to '', class: "btn-floating orange darken-3" do
-                %i.material-icons mode_edit
-              %ul
-                %li
-                  =link_to edit_debate_speech_path(@debate, @debate.speech.first), class: "btn-floating red" do
-                    %i.material-icons chat
-                %li
-                  =link_to @debate, class: "btn-floating yellow" do
-                    %i.material-icons grade
-                %li
-                  =link_to @debate, class: "btn-floating green" do
-                    %i.material-icons thumb_up
-                %li
-                  =link_to @debate, class: "btn-floating brown" do
-                    %i.material-icons thumb_down
-          - else
+          - if @debate.positions.neg.first.speeches.first == nil
             Create a speech
             .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
               =link_to '', class: "btn-floating orange darken-3" do
                 %i.material-icons add
               %ul
                 %li
-                  =link_to new_debate_speech_path(@debate, position_id: @debate.positions.aff.first, speech_name: 'OneNC'), class: "btn-floating red" do
+                  =link_to new_speech_path(speech_name: 'OneNC', position: @debate.positions.neg.first), class: "btn-floating red" do
                     %i.material-icons chat
+          - else
+            - if @debate.positions.neg.first.speeches.first.speech_name == 'OneNC'
+              %h5 #{@debate.positions.neg.first.speeches.first.speech_name}
+              .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
+                =link_to '', class: "btn-floating orange darken-3" do
+                  %i.material-icons mode_edit
+                %ul
+                  %li
+                    =link_to edit_speech_path(@debate.positions.aff.first.speeches.first), class: "btn-floating red" do
+                      %i.material-icons chat
+                  %li
+                    =link_to @debate, class: "btn-floating yellow" do
+                      %i.material-icons grade
+                  %li
+                    =link_to @debate, class: "btn-floating green" do
+                      %i.material-icons thumb_up
+                  %li
+                    =link_to @debate, class: "btn-floating brown" do
+                      %i.material-icons thumb_down
       .row
         .card-panel
           %b Thesis
