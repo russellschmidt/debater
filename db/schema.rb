@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160130231450) do
+ActiveRecord::Schema.define(version: 20160201003901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contentions", force: :cascade do |t|
+    t.string   "topic"
+    t.text     "summary"
+    t.integer  "speech_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "contentions", ["speech_id"], name: "index_contentions_on_speech_id", using: :btree
 
   create_table "debates", force: :cascade do |t|
     t.string   "resolution"
@@ -70,6 +80,7 @@ ActiveRecord::Schema.define(version: 20160130231450) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "contentions", "speeches"
   add_foreign_key "debates", "users", column: "creator_id"
   add_foreign_key "positions", "debates"
   add_foreign_key "positions", "users"
