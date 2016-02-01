@@ -15,8 +15,12 @@
     =link_to 'new contention', new_speech_contention_path(@speech), class:'btn-flat'
   .row.s12.l12
     %h5 Edit Contention
-    - @speech.contentions.each do |c|
-      .row
-        = c.topic
-        = c.summary
-        = link_to 'Edit', edit_speech_contention_path(@speech, c), class: 'btn-flat'
+    %ol
+      - @speech.contentions.each do |c|
+        %li
+          .row
+            = c.topic
+          .row
+            = c.summary
+          .row
+            = link_to 'Edit', edit_speech_contention_path(@speech, c), class: 'btn-flat'
