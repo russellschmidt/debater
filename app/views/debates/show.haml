@@ -79,50 +79,12 @@
                     =link_to @debate, class: "btn-floating brown" do
                       %i.material-icons thumb_down
         .row
-        .card-panel
-          %b Thesis
-          .row
-          To defend against a tyrannical and/or exploitative majority, citizens are compelled to acts of civil disobedience (non-violent rule breaking) to protest their condition.
-          .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
-            =link_to @debate, class: "btn-floating orange darken-3" do
-              %i.material-icons mode_edit
-            %ul
-              %li
-                =link_to @debate, class: "btn-floating red" do
-                  %i.material-icons chat_bubble
-              %li
-                =link_to @debate, class: "btn-floating yellow" do
-                  %i.material-icons grade
-              %li
-                =link_to @debate, class: "btn-floating green" do
-                  %i.material-icons thumb_up
-              %li
-                =link_to @debate, class: "btn-floating brown" do
-                  %i.material-icons thumb_down
-      .row
-        .card-panel
-          %ol
-            %li US Civil Rights movement
-            %ol
-              %li Democracy (USA) exploited & oppressed a black minority
-              %li Slavery and later Jim Crow codified and legalized majority oppression of minority
-              %li Civil disobedience brought attention, reform, expansion of vote and democracy
-          .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
-            =link_to @debate, class: "btn-floating orange darken-3" do
-              %i.material-icons mode_edit
-            %ul
-              %li
-                =link_to @debate, class: "btn-floating red" do
-                  %i.material-icons chat_bubble
-              %li
-                =link_to @debate, class: "btn-floating yellow" do
-                  %i.material-icons grade
-              %li
-                =link_to @debate, class: "btn-floating green" do
-                  %i.material-icons thumb_up
-              %li
-                =link_to @debate, class: "btn-floating brown" do
-                  %i.material-icons thumb_down
+          - if @debate.positions.aff.first.speeches.first
+            - @debate.positions.aff.first.speeches.first.contentions.each do |c|
+              .row
+                .card-panel
+                  %b #{c.topic}
+                  %p #{c.summary}
   .col.s12.l2
     .speech-container
       .row
@@ -155,80 +117,46 @@
                   %li
                     =link_to @debate, class: "btn-floating brown" do
                       %i.material-icons thumb_down
-      .row
-        .card-panel
-          %b Thesis
-          .row
-            Legitimate laws are founded on the will of citizens. Violating these laws are primae facie undemocratic and immoral, and undermine democratic institutions.
-          .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
-            =link_to @debate, class: "btn-floating orange darken-3" do
-              %i.material-icons mode_edit
-            %ul
-              %li
-                =link_to @debate, class: "btn-floating red" do
-                  %i.material-icons chat_bubble
-              %li
-                =link_to @debate, class: "btn-floating yellow" do
-                  %i.material-icons grade
-              %li
-                =link_to @debate, class: "btn-floating green" do
-                  %i.material-icons thumb_up
-              %li
-                =link_to @debate, class: "btn-floating brown" do
-                  %i.material-icons thumb_down
-      .row
-        .card-panel
-          %ol
-            %li Slippery Slope to Violence
+        .row
+          - if @debate.positions.neg.first.speeches.first
+            - @debate.positions.neg.first.speeches.first.contentions.each do |c|
+              .row
+                .card-panel
+                  %b #{c.topic}
+                  %p #{c.summary}
+  %hr
+  %hr
+  %hr
+  .col.s12.l2
+    .speech-container
+      .card-panel
+        %h5 Rebuttals
+        .row
+          .card-panel
             %ol
-              %li Unionizing labor protests turn to anarchist bombings and assassinations
-              %li Civil Rights movements turn to riots in the 1960s, white flight and ghettoization
-              %li KKK post-war citizens group turns into a terrorist organization
-          .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
-            =link_to @debate, class: "btn-floating orange darken-3" do
-              %i.material-icons mode_edit
-            %ul
-              %li
-                =link_to @debate, class: "btn-floating red" do
-                  %i.material-icons chat_bubble
-              %li
-                =link_to @debate, class: "btn-floating yellow" do
-                  %i.material-icons grade
-              %li
-                =link_to @debate, class: "btn-floating green" do
-                  %i.material-icons thumb_up
-              %li
-                =link_to @debate, class: "btn-floating brown" do
-                  %i.material-icons thumb_down
-      .row
-        .card-panel
-          %h5 Rebuttals
-      .row
-        .card-panel
-          %ol
-            %li US Civil Rights Movement
-            %ol
-              %li Democracy, not disobedience, helped Civil Rights
-              %li Speeches of leaders like Dr. King changed majority opinion
-              %li Johnson's Great Society program
-              %li Supreme Court led desegregation
-              %li It was democratic institutions that saved democracy, not law breaking
-          .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
-            =link_to @debate, class: "btn-floating orange darken-3" do
-              %i.material-icons mode_edit
-            %ul
-              %li
-                =link_to @debate, class: "btn-floating red" do
-                  %i.material-icons chat_bubble
-              %li
-                =link_to @debate, class: "btn-floating yellow" do
-                  %i.material-icons grade
-              %li
-                =link_to @debate, class: "btn-floating green" do
-                  %i.material-icons thumb_up
-              %li
-                =link_to @debate, class: "btn-floating brown" do
-                  %i.material-icons thumb_down
+              %li US Civil Rights Movement
+              %ol
+                %li Democracy, not disobedience, helped Civil Rights
+                %li Speeches of leaders like Dr. King changed majority opinion
+                %li Johnson's Great Society program
+                %li Supreme Court led desegregation
+                %li It was democratic institutions that saved democracy, not law breaking
+            .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
+              =link_to @debate, class: "btn-floating orange darken-3" do
+                %i.material-icons mode_edit
+              %ul
+                %li
+                  =link_to @debate, class: "btn-floating red" do
+                    %i.material-icons chat_bubble
+                %li
+                  =link_to @debate, class: "btn-floating yellow" do
+                    %i.material-icons grade
+                %li
+                  =link_to @debate, class: "btn-floating green" do
+                    %i.material-icons thumb_up
+                %li
+                  =link_to @debate, class: "btn-floating brown" do
+                    %i.material-icons thumb_down
 .row
   = link_to 'Back', debates_path, class: "waves-effect btn-flat"
   = link_to 'Edit', edit_debate_path(@debate), class: "waves-effect btn-flat"

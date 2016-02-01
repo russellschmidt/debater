@@ -1,0 +1,8 @@
+.container
+  .row
+    = form_for [@speech, @contention] do |f|
+      =f.label :topic
+      =f.text_field :topic
+      =f.label :summary
+      =f.text_area :summary
+      =f.submit class: 'btn-flat'

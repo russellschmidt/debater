@@ -1,5 +1,6 @@
 class Speech < ActiveRecord::Base
   belongs_to :position
+  has_many :contentions
 
   validates :speech_name, presence: true
   validates :position_id, presence: true
