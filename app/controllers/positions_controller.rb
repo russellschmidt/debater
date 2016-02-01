@@ -1,7 +1,7 @@
 class PositionsController < ApplicationController
-  before_action :find_debate
+  before_action :find_debate, except: [:index, :show]
   before_action :find_position, only: [:edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show]
 
   def new
     @position = @debate.positions.build(affirmative: params[:affirmative], user: current_user)
