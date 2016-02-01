@@ -9,7 +9,7 @@
     %h4 Lincoln-Douglas Debate
     %h5 Resolved: #{@debate.resolution}
 .row
-  .col.s12.l2
+  .col.s12.m12.l3
     .speech-container
       .row.card-panel
         %dl
@@ -27,7 +27,7 @@
           - else
             Awaiting a debater
             = link_to 'Join', new_debate_position_path(@debate, affirmative: true, user: current_user), class: 'btn green'
-  .col.s12.l2
+  .col.s12.m12.l3
     .speech-container
       .row.card-panel
         %dl
@@ -45,118 +45,111 @@
           - else
             Awaiting a debater
             = link_to 'Join', new_debate_position_path(@debate, affirmative: false, user: current_user), class: 'btn red'
-.row
-  .col.s12.l2
-    .speech-container
-      .row
+- if defined? @debate.positions
+  .row
+    -if @debate.positions.aff.count == 0
+      .col.s12.m12.l3
+        .speech-container
+          .row
+            .card-panel
+              Take the affirmative position to enter your argument
+    -elsif @debate.positions.aff.count > 0
+      .col.s12.m12.l3
+        .speech-container
+          .row
+            .card-panel
+              - if !(defined? @debate.positions.aff.first.speeches) || (@debate.positions.aff.first.speeches.count == 0)
+                Create a speech
+                .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
+                  =link_to '', class: "btn-floating orange darken-3" do
+                    %i.material-icons add
+                  %ul
+                    %li
+                      =link_to new_speech_path(speech_name: 'OneAC', position: @debate.positions.aff.first), class: "btn-floating red" do
+                        %i.material-icons chat
+              - else
+                - if @debate.positions.aff.first.speeches.first.speech_name == 'OneAC'
+                  %h5 Speech: #{@debate.positions.aff.first.speeches.first.speech_name}
+                  %p Click the orange 'edit' button below to add some contentions and examples to prove your point
+                  .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
+                    =link_to '', class: "btn-floating orange darken-3" do
+                      %i.material-icons mode_edit
+                    %ul
+                      %li
+                        =link_to edit_speech_path(@debate.positions.aff.first.speeches.first), class: "btn-floating red" do
+                          %i.material-icons chat
+                      %li
+                        =link_to @debate, class: "btn-floating yellow" do
+                          %i.material-icons grade
+                      %li
+                        =link_to @debate, class: "btn-floating green" do
+                          %i.material-icons thumb_up
+                      %li
+                        =link_to @debate, class: "btn-floating brown" do
+                          %i.material-icons thumb_down
+    -if @debate.positions.neg.count == 0
+      .col.s12.m12.l3
+        .speech-container
+          .row
+            .card-panel
+              Take the negative position to enter your argument
+    -elsif @debate.positions.neg.count > 0
+      .col.s12.m12.l3
+        .speech-container
+          .row
+            .card-panel
+              - if !(defined? @debate.positions.neg.first.speeches) || (@debate.positions.neg.first.speeches.count == 0)
+                Create a speech
+                .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
+                  =link_to '', class: "btn-floating orange darken-3" do
+                    %i.material-icons add
+                  %ul
+                    %li
+                      =link_to new_speech_path(speech_name: 'OneNC', position: @debate.positions.neg.first), class: "btn-floating red" do
+                        %i.material-icons chat
+              - else
+                - if @debate.positions.neg.first.speeches.first.speech_name == 'OneNC'
+                  %h5 Speech: #{@debate.positions.neg.first.speeches.first.speech_name}
+                  %p Click the orange 'edit' button below to add some contentions and examples to prove your point
+                  .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
+                    =link_to '', class: "btn-floating orange darken-3" do
+                      %i.material-icons mode_edit
+                    %ul
+                      %li
+                        =link_to edit_speech_path(@debate.positions.neg.first.speeches.first), class: "btn-floating red" do
+                          %i.material-icons chat
+                      %li
+                        =link_to @debate, class: "btn-floating yellow" do
+                          %i.material-icons grade
+                      %li
+                        =link_to @debate, class: "btn-floating green" do
+                          %i.material-icons thumb_up
+                      %li
+                        =link_to @debate, class: "btn-floating brown" do
+                          %i.material-icons thumb_down
+  .row
+    - if (defined? @debate.positions.aff.first.speeches)
+      .col.s12.m12.l3
+        - if defined? @debate.positions.aff.first.speeches.first.contentions
+          - @debate.positions.aff.first.speeches.first.contentions.each do |c|
+            .card-panel
+              %b #{c.topic}
+              %p #{c.summary}
+    - elsif defined? @debate.positions.neg.first.speeches
+      .col.s12.m12.l3
         .card-panel
-          - if !(defined? @debate.positions.aff.first.speeches)
-            Create a speech
-            .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
-              =link_to '', class: "btn-floating orange darken-3" do
-                %i.material-icons add
-              %ul
-                %li
-                  =link_to new_speech_path(speech_name: 'OneAC', position: @debate.positions.aff.first), class: "btn-floating red" do
-                    %i.material-icons chat
-          - else
-            - if @debate.positions.aff.first.speeches.first.speech_name == 'OneAC'
-              %h5 #{@debate.positions.aff.first.speeches.first.speech_name}
-              .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
-                =link_to '', class: "btn-floating orange darken-3" do
-                  %i.material-icons mode_edit
-                %ul
-                  %li
-                    =link_to edit_speech_path(@debate.positions.aff.first.speeches.first), class: "btn-floating red" do
-                      %i.material-icons chat
-                  %li
-                    =link_to @debate, class: "btn-floating yellow" do
-                      %i.material-icons grade
-                  %li
-                    =link_to @debate, class: "btn-floating green" do
-                      %i.material-icons thumb_up
-                  %li
-                    =link_to @debate, class: "btn-floating brown" do
-                      %i.material-icons thumb_down
-        .row
-          - if defined? @debate.positions.aff.first.speeches.first.contentions
-            - @debate.positions.aff.first.speeches.first.contentions.each do |c|
-              .row
-                .card-panel
-                  %b #{c.topic}
-                  %p #{c.summary}
-  .col.s12.l2
-    .speech-container
-      .row
+          Enter a contention
+    - if (defined? @debate.positions.neg.first.speeches)
+      .col.s12.m12.l3
+        - if defined? @debate.positions.neg.first.speeches.first.contentions
+          - @debate.positions.neg.first.speeches.first.contentions.each do |c|
+            .card-panel
+              %b #{c.topic}
+              %p #{c.summary}
+    - elsif defined? @debate.positions.aff.first.speeches #note that this is 
+      .col.s12.m12.l3
         .card-panel
-          - if !(defined? @debate.positions.neg.first.speeches)
-            Create a speech
-            .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
-              =link_to '', class: "btn-floating orange darken-3" do
-                %i.material-icons add
-              %ul
-                %li
-                  =link_to new_speech_path(speech_name: 'OneNC', position: @debate.positions.neg.first), class: "btn-floating red" do
-                    %i.material-icons chat
-          - else
-            - if defined? @debate.positions.neg.first.speeches
-              %h5 #{@debate.positions.neg.first.speeches.first.speech_name}
-              .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
-                =link_to '', class: "btn-floating orange darken-3" do
-                  %i.material-icons mode_edit
-                %ul
-                  %li
-                    =link_to edit_speech_path(@debate.positions.neg.first.speeches.first), class: "btn-floating red" do
-                      %i.material-icons chat
-                  %li
-                    =link_to @debate, class: "btn-floating yellow" do
-                      %i.material-icons grade
-                  %li
-                    =link_to @debate, class: "btn-floating green" do
-                      %i.material-icons thumb_up
-                  %li
-                    =link_to @debate, class: "btn-floating brown" do
-                      %i.material-icons thumb_down
-        .row
-          - if defined? @debate.positions.neg.first.speeches.first.contentions
-            - @debate.positions.neg.first.speeches.first.contentions.each do |c|
-              .row
-                .card-panel
-                  %b #{c.topic}
-                  %p #{c.summary}
-  %hr
-  %hr
-  %hr
-  .col.s12.l2
-    .speech-container
-      .card-panel
-        %h5 Rebuttals
-        .row
-          .card-panel
-            %ol
-              %li US Civil Rights Movement
-              %ol
-                %li Democracy, not disobedience, helped Civil Rights
-                %li Speeches of leaders like Dr. King changed majority opinion
-                %li Johnson's Great Society program
-                %li Supreme Court led desegregation
-                %li It was democratic institutions that saved democracy, not law breaking
-            .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
-              =link_to @debate, class: "btn-floating orange darken-3" do
-                %i.material-icons mode_edit
-              %ul
-                %li
-                  =link_to @debate, class: "btn-floating red" do
-                    %i.material-icons chat_bubble
-                %li
-                  =link_to @debate, class: "btn-floating yellow" do
-                    %i.material-icons grade
-                %li
-                  =link_to @debate, class: "btn-floating green" do
-                    %i.material-icons thumb_up
-                %li
-                  =link_to @debate, class: "btn-floating brown" do
-                    %i.material-icons thumb_down
+          Enter a contention
 .row
   = link_to 'Back', debates_path, class: "waves-effect btn-flat"
   = link_to 'Edit', edit_debate_path(@debate), class: "waves-effect btn-flat"

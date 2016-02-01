@@ -1,13 +1,18 @@
 class SpeechesController < ApplicationController
-  before_action :dropdown, only: [:new, :edit]
+  before_action :dropdown, only: [:new, :create, :edit, :update]
   before_action :find_speech, only: [:edit, :update, :destroy]
 
   def new
+Rails.logger.info params
     @speech = Speech.new(speech_name: params[:speech_name], position_id: params[:position])
+Rails.logger.info @speech.inspect
+    @speech
   end
 
   def create
+Rails.logger.info speech_param
     @speech = Speech.new(speech_param)
+Rails.logger.info @speech.inspect
 
     if @speech.save
       flash[:notice] = "Speech saved"
