@@ -12,5 +12,6 @@
       = form_for @debate do |f|
         = f.label :resolution
         = f.text_field :resolution
+        = f.hidden_field :creator_id, value: current_user.id
         = f.submit class:"btn-flat"
         = link_to "Cancel", debates_path, class:'btn-flat'
