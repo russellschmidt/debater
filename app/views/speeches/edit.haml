@@ -24,3 +24,4 @@
             = c.summary
           .row
             = link_to 'Edit', edit_speech_contention_path(@speech, c), class: 'btn-flat'
+            = link_to 'Delete', speech_contention_path(@speech, c), method: :delete, class: 'btn-flat yellow', data: {confirm: "Are you sure? Delete is forever."}
