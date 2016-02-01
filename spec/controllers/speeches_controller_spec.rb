@@ -54,15 +54,53 @@ RSpec.describe SpeechesController, type: :controller do
   end
 
   describe "get EDIT" do
+    before :each do
+      sign_in my_user
+    end
 
+    it "returns the edit view" do
+      get :edit, id: my_speech
+      expect(response).to render_template("edit")
+    end
   end
 
-  describe "post UPDATE" do
+  describe "put UPDATE" do
+    before :each do
+      sign_in my_user
+    end
 
+    it "updates speech with the expected attributes" do
+      new_speech_name = "TwoAR"
+      put :update, id: my_speech.id, speech: {speech_name: new_speech_name, position_id: my_speech.position_id}
+      updated_speech = assigns(:speech)
+
+      expect(updated_speech.id).to eq my_speech.id
+      expect(updated_speech.speech_name).to eq new_speech_name
+      expect(updated_speech.position_id).to eq my_speech.position_id
+    end
+
+    it "won't save an invalid update" do
+      new_speech_name = nil
+      put :update, id: my_speech.id, speech: {speech_name: new_speech_name, position_id: my_speech.position_id}
+
+      expect(my_speech.speech_name).not_to eq nil
+    end
   end
 
   describe "delete DESTROY" do
+    before :each do
+      sign_in my_user
+    end
 
+    it "deletes the post" do
+      delete :destroy, {id: my_speech}
+      count = Position.where({id: my_speech.id}).size
+      expect(count).to eq 0
+    end
+
+    it "redirects to debate show" do
+      delete :destroy, {id: my_speech}
+      expect(response).to redirect_to debate_path(my_speech.position.debate)
+    end
   end
-  
 end

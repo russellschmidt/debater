@@ -1,8 +1,9 @@
 class SpeechesController < ApplicationController
+  before_action :dropdown, only: [:new, :edit]
+  before_action :find_speech, only: [:edit, :update, :destroy]
 
   def new
     @speech = Speech.new(speech_name: params[:speech_name], position_id: params[:position])
-    @dropdown_options = Speech.speech_names.map {|key, value| [key, key]}
   end
 
   def create
@@ -17,8 +18,29 @@ class SpeechesController < ApplicationController
     end
   end
 
-  def destroy
+  def edit
   end
+
+  def update
+    if @speech.update_attributes(speech_param)
+      flash[:notice] = "Update successful"
+      redirect_to debate_path(@speech.position.debate)
+    else
+      flash[:error] = "Update failed. Please try again"
+      render :edit
+    end
+  end
+
+  def destroy
+    if @speech.destroy
+      flash[:notice] = "Deletion successful"
+      redirect_to debate_path(@speech.position.debate)
+    else
+      flash[:error] = "Delete failed. Please try again"
+      render :edit
+    end
+  end
+
 
   private
 
@@ -26,4 +48,11 @@ class SpeechesController < ApplicationController
     params.require(:speech).permit(:speech_name, :position_id)
   end
 
+  def dropdown
+    @dropdown_options = Speech.speech_names.map {|key, value| [key, key]}
+  end
+
+  def find_speech
+    @speech = Speech.find(params[:id])
+  end
 end

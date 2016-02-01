@@ -1,7 +1,7 @@
 .container
   .row.s12.l12
     %h4 New speech: #{@speech.speech_name}
-    = form_for [@debate, @speech] do |f|
+    = form_for [@speech] do |f|
       =f.label :speech_name
       .select-div
         =f.select :speech_name, collection: @dropdown_options, selected: @speech.speech_name
