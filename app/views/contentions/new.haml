@@ -1,0 +1,10 @@
+.container
+  %h4 New Contention
+  =form_for [@speech, @contention] do |f|
+    =f.label :topic
+    =f.text_field :topic
+    =f.label :summary
+    =f.text_area :summary
+    .row
+      =f.submit class: 'btn-flat'
+      =link_to 'Back', :back, class: 'btn-flat'

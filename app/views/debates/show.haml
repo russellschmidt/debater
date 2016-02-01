@@ -79,26 +79,13 @@
                     =link_to @debate, class: "btn-floating brown" do
                       %i.material-icons thumb_down
         .row
-        .card-panel
-          %b Thesis
-          .row
-          To defend against a tyrannical and/or exploitative majority, citizens are compelled to acts of civil disobedience (non-violent rule breaking) to protest their condition.
-          .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
-            =link_to @debate, class: "btn-floating orange darken-3" do
-              %i.material-icons mode_edit
-            %ul
-              %li
-                =link_to @debate, class: "btn-floating red" do
-                  %i.material-icons chat_bubble
-              %li
-                =link_to @debate, class: "btn-floating yellow" do
-                  %i.material-icons grade
-              %li
-                =link_to @debate, class: "btn-floating green" do
-                  %i.material-icons thumb_up
-              %li
-                =link_to @debate, class: "btn-floating brown" do
-                  %i.material-icons thumb_down
+          - @debate.positions.aff.first.speeches.first.contentions.each do |c|
+            .row
+              .card-panel
+                %b #{c.topic}
+                %p #{c.summary}
+        %hr
+        %h1 hardcoded below this
       .row
         .card-panel
           %ol

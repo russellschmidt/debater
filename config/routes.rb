@@ -5,9 +5,8 @@ Rails.application.routes.draw do
     resources :positions, except: [:index, :show]
   end
   resources :speeches, except: [:index, :show] do
-    resources :contentions
+    resources :contentions, except: [:index, :show] 
   end
-
 
   root 'greetings#hello'
 
