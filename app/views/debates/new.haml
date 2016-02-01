@@ -1,6 +1,6 @@
 .container.debate-container
   - if @debate.errors.any?
-    %h5 #{pluralize(@debate.errors.count)} errors detected during your save attempt
+    %h5 #{@debate.errors.count} errors detected during your save attempt
     - @debate.errors.full_messages.each do |msg|
       %ul
         %li=msg
