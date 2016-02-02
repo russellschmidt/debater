@@ -9,6 +9,10 @@ RSpec.describe Debate, type: :model do
     expect(my_debate).to be_valid
   end
 
+  it "belongs to user" do
+    my_debate {should belong_to(:user)}
+  end
+
   context "should fail when" do
     it "is invalid without a resolution" do
       bad_res_debate = Debate.new(resolution: nil, creator_id: my_user.id)

@@ -53,6 +53,11 @@ group :development do
   gem 'spring'
 end
 
+group :test do
+  # test associations in rspec
+  gem 'shoulda-matchers', '~> 3.1'
+end
+
 group :production do
   gem 'mailgunner'
   gem 'rails_12factor'

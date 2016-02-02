@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Contention, type: :model do
-  let(:my_contention) {create(:contention)}
+  let(:my_user) {create(:user)}
+  let(:my_debate) {create(:debate, creator_id: my_user.id)}
+  let(:my_position) {create(:position, user: my_user, debate: my_debate)}
+  let(:my_speech) {create(:speech, position_id: my_position.id)}
+  let(:my_contention) {create(:contention, speech_id: my_speech.id)}
 
   context "responds to attributes" do
     it "responds to topic" do
@@ -10,6 +14,10 @@ RSpec.describe Contention, type: :model do
 
     it "responds to summary" do
       expect(my_contention).to respond_to(:summary)
+    end
+
+    it "belongs to speech" do
+      my_contention {should belong_to(:speech)}
     end
   end
 
