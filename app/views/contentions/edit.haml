@@ -5,4 +5,6 @@
       =f.text_field :topic
       =f.label :summary
       =f.text_area :summary
-      =f.submit class: 'btn-flat'
+      .row
+        =f.submit class: 'btn-flat'
+        =link_to 'Back', edit_speech_path(@speech), class: 'btn-flat'
