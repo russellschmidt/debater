@@ -58,4 +58,15 @@ RSpec.configure do |config|
 
   # include Devise test helpers
   config.include Devise::TestHelpers, :type => :controller
+
+end
+
+# link up rspec and the shoulda-matchers gem in a configuration block
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    # Choose a test framework:
+    with.test_framework :rspec
+    # Choose a library (includes Active_Record, Active_Model, Active_Controller)
+    with.library :rails
+  end
 end

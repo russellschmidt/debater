@@ -1,9 +1,9 @@
 .container.debate-container
   - if @debate.errors.any?
-    %h5 #{@debate.errors.count} errors detected during your save attempt
+    %h5 #{pluralize(@debate.errors.count, "error")} detected during your save attempt
     - @debate.errors.full_messages.each do |msg|
       %ul
-        %li=msg
+        %li.error-message=msg
   .row
     .col.s12
       %h4 create new debate

@@ -30,7 +30,7 @@ class DebatesController < ApplicationController
   end
 
   def update
-    if @debate.update_attributes(debate_param)
+    if @debate.update(debate_param)
       flash[:notice] = "Debate updated"
       redirect_to(@debate)
     else

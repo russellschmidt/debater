@@ -26,6 +26,10 @@ RSpec.describe Position, type: :model do
     it "should respond to user" do
       expect(my_position).to respond_to(:user)
     end
+
+    it "belongs to debate" do
+      my_position {should belong_to(:debate)}
+    end
   end
 
   describe "valid attributes" do

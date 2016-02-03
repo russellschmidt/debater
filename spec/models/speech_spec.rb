@@ -10,6 +10,10 @@ RSpec.describe Speech, type: :model do
     it "should respond to speech_name attribute" do
       expect(my_speech).to respond_to(:speech_name)
     end
+
+    it "belongs to position" do
+      my_speech {should belong_to(:position)}
+    end
   end
 
   describe "invalid" do
