@@ -60,7 +60,7 @@
             .card-panel
               - if !(defined? @debate.positions.aff.first.speeches) || (@debate.positions.aff.first.speeches.count == 0)
                 Create a speech
-                .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
+                .fixed-action-btn{ style: "position: relative; left: 50%; bottom: 1%;" }
                   =link_to '', class: "btn-floating orange darken-3" do
                     %i.material-icons add
                   %ul
@@ -71,7 +71,7 @@
                 - if @debate.positions.aff.first.speeches.first.speech_name == 'OneAC'
                   %h5 Speech: #{@debate.positions.aff.first.speeches.first.speech_name}
                   %p Click the orange 'edit' button below to add some contentions and examples to prove your point
-                  .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
+                  .fixed-action-btn{ style: "position: relative; left: 50%; bottom: 1%;" }
                     =link_to '', class: "btn-floating orange darken-3" do
                       %i.material-icons mode_edit
                     %ul
@@ -100,7 +100,7 @@
             .card-panel
               - if !(defined? @debate.positions.neg.first.speeches) || (@debate.positions.neg.first.speeches.count == 0)
                 Create a speech
-                .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
+                .fixed-action-btn{ style: "position: relative; left: 50%; bottom: 1%;" }
                   =link_to '', class: "btn-floating orange darken-3" do
                     %i.material-icons add
                   %ul
@@ -111,7 +111,7 @@
                 - if @debate.positions.neg.first.speeches.first.speech_name == 'OneNC'
                   %h5 Speech: #{@debate.positions.neg.first.speeches.first.speech_name}
                   %p Click the orange 'edit' button below to add some contentions and examples to prove your point
-                  .fixed-action-btn{ style: "position: relative; left: 20%; bottom: 1%;" }
+                  .fixed-action-btn{ style: "position: relative; left: 50%; bottom: 1%;" }
                     =link_to '', class: "btn-floating orange darken-3" do
                       %i.material-icons mode_edit
                     %ul
@@ -146,7 +146,7 @@
             .card-panel
               %b #{c.topic}
               %p #{c.summary}
-    - elsif defined? @debate.positions.aff.first.speeches #note that this is 
+    - elsif defined? @debate.positions.aff.first.speeches #note that this is
       .col.s12.m12.l3
         .card-panel
           Enter a contention

@@ -1,0 +1,12 @@
+.container
+  =form_for [@contention] do
+    =f.label :claim
+    =f.input :claim
+    =f.label :warrant
+    =f.input :warrant
+    =f.label :impact
+    =f.input :impact
+    =f.label :citation
+    =f.input :citation
+    =f.hidden :contention
+    =f.submit class:"btn-flat"
