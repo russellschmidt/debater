@@ -65,3 +65,15 @@ dd {
 .select-div select {
   display: block;
 }
+
+
+// error messages
+.error-message {
+  color: #FF0000;
+  font-weight: 600;
+  font-size: 1.1em;
+  animation: blinker 1s linear infinite;
+}
+@keyframes blinker {
+  50% { opacity: 0.0; }
+}
