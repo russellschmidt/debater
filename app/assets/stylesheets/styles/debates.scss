@@ -66,6 +66,20 @@ dd {
   display: block;
 }
 
+// formatting for the FAB floating action button in debate#show
+.fixed-action-btn.horizontal {
+  position: relative;
+  top: 10px;
+
+}
+
+.fixed-action-btn.horizontal ul {
+  transform: translateY(-200%);
+  left: 25px;
+  right: inherit;
+  text-align: left;
+}
+
 
 // error messages
 .error-message {
