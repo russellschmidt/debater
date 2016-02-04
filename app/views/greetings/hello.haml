@@ -1,7 +1,7 @@
 .container.greeting-container
   .row
     %h1 welcome to debater
-  .row
+  .row.greeting-buttons
     - if current_user
       =link_to debates_path, class: "btn-large waves-light waves-effect orange darken-3" do
         = "See debates"
