@@ -3,16 +3,11 @@ class SpeechesController < ApplicationController
   before_action :find_speech, only: [:edit, :update, :destroy]
 
   def new
-Rails.logger.info params
     @speech = Speech.new(speech_name: params[:speech_name], position_id: params[:position])
-Rails.logger.info @speech.inspect
-    @speech
   end
 
   def create
-Rails.logger.info speech_param
     @speech = Speech.new(speech_param)
-Rails.logger.info @speech.inspect
 
     if @speech.save
       flash[:notice] = "Speech saved"
@@ -27,7 +22,7 @@ Rails.logger.info @speech.inspect
   end
 
   def update
-    if @speech.update_attributes(speech_param)
+    if @speech.update(speech_param)
       flash[:notice] = "Update successful"
       redirect_to debate_path(@speech.position.debate)
     else

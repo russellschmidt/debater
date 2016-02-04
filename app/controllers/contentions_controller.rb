@@ -23,7 +23,7 @@ class ContentionsController < ApplicationController
   end
 
   def update
-    if @contention.update_attributes(contention_param)
+    if @contention.update(contention_param)
       flash[:notice] = "Update successful"
       redirect_to edit_speech_path(@speech)
     else

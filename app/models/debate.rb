@@ -3,7 +3,7 @@ class Debate < ActiveRecord::Base
   validates :creator_id, presence: true
 
   belongs_to :creator, class_name: "User"
-  has_many :positions
+  has_many :positions, dependent: :destroy
 
   scope :new_to_old, -> {order(updated_at: :desc)}
 end

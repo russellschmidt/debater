@@ -5,7 +5,7 @@ class Position < ActiveRecord::Base
 
   belongs_to :debate
   belongs_to :user
-  has_many :speeches
+  has_many :speeches, dependent: :destroy
 
   scope :aff, -> {where(affirmative: true) }
   scope :neg, -> {where(affirmative: false) }

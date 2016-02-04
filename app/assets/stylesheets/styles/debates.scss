@@ -42,6 +42,10 @@ li {
   margin: 0;
 }
 
+ol.argument {
+  padding-left: 25px;
+}
+
 // Argument defintion lists
 dl {
   width: 100%;
@@ -66,6 +70,20 @@ dd {
   display: block;
 }
 
+// formatting for the FAB floating action button in debate#show
+.fixed-action-btn.horizontal {
+  position: relative;
+  top: 10px;
+
+}
+
+.fixed-action-btn.horizontal ul {
+  transform: translateY(-200%);
+  left: 25px;
+  right: inherit;
+  text-align: left;
+}
+
 
 // error messages
 .error-message {
@@ -76,4 +94,29 @@ dd {
 }
 @keyframes blinker {
   50% { opacity: 0.0; }
+}
+
+// ordered list on contentions - need to override the materialize css
+.contention .container .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.contention .container .row li:hover {
+  transform: scale(1.1);
+  background-color: $orange-lighten-5;
+  padding: 3px;
+  z-index: 100;
+}
+
+.contention .select-div select {
+  width: 20%;
+  min-width: 90px;
+}
+
+// making the buttons responsive in speech#edit & speech#new
+.contention a.btn-flat, .contention input.btn-flat {
+  padding: 12px;
+  height: auto;
+  line-height: normal;
 }

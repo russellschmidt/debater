@@ -1,9 +1,15 @@
 .row
-  .col.s12.l4.offset-l8
-    .align-right
-      debate created: #{localize(@debate.created_at, format: :long)}
-      %br
-      last updated: #{localize(@debate.updated_at, format: :long)}
+  .col.s12.m8.l8
+    .row
+      = link_to 'Back', debates_path, class: "waves-effect btn-flat"
+      = link_to 'Edit', edit_debate_path(@debate), class: "waves-effect btn-flat"
+      = link_to 'Delete', debate_path(@debate), method: :delete, class: "waves-effect btn-flat", data: {confirm: "Are you sure you want to delete this debate?"}
+  .col.s12.m4.l4
+    .row
+      .align-right
+        debate created: #{localize(@debate.created_at, format: :long)}
+        %br
+        last updated: #{localize(@debate.updated_at, format: :long)}
 .row
   .col.s12.l12.m12
     %h4 Lincoln-Douglas Debate
@@ -60,7 +66,7 @@
             .card-panel
               - if !(defined? @debate.positions.aff.first.speeches) || (@debate.positions.aff.first.speeches.count == 0)
                 Create a speech
-                .fixed-action-btn{ style: "position: relative; left: 50%; bottom: 1%;" }
+                .fixed-action-btn.horizontal
                   =link_to '', class: "btn-floating orange darken-3" do
                     %i.material-icons add
                   %ul
@@ -71,10 +77,10 @@
                 - if @debate.positions.aff.first.speeches.first.speech_name == 'OneAC'
                   %h5 Speech: #{@debate.positions.aff.first.speeches.first.speech_name}
                   %p Click the orange 'edit' button below to add some contentions and examples to prove your point
-                  .fixed-action-btn{ style: "position: relative; left: 50%; bottom: 1%;" }
+                  .fixed-action-btn.horizontal
                     =link_to '', class: "btn-floating orange darken-3" do
                       %i.material-icons mode_edit
-                    %ul
+                    %ul.floating-options
                       %li
                         =link_to edit_speech_path(@debate.positions.aff.first.speeches.first), class: "btn-floating red" do
                           %i.material-icons chat
@@ -100,7 +106,7 @@
             .card-panel
               - if !(defined? @debate.positions.neg.first.speeches) || (@debate.positions.neg.first.speeches.count == 0)
                 Create a speech
-                .fixed-action-btn{ style: "position: relative; left: 50%; bottom: 1%;" }
+                .fixed-action-btn.horizontal
                   =link_to '', class: "btn-floating orange darken-3" do
                     %i.material-icons add
                   %ul
@@ -111,7 +117,7 @@
                 - if @debate.positions.neg.first.speeches.first.speech_name == 'OneNC'
                   %h5 Speech: #{@debate.positions.neg.first.speeches.first.speech_name}
                   %p Click the orange 'edit' button below to add some contentions and examples to prove your point
-                  .fixed-action-btn{ style: "position: relative; left: 50%; bottom: 1%;" }
+                  .fixed-action-btn.horizontal
                     =link_to '', class: "btn-floating orange darken-3" do
                       %i.material-icons mode_edit
                     %ul
@@ -131,26 +137,42 @@
     - if (defined? @debate.positions.aff.first.speeches)
       .col.s12.m12.l3
         - if defined? @debate.positions.aff.first.speeches.first.contentions
-          - @debate.positions.aff.first.speeches.first.contentions.each do |c|
-            .card-panel
-              %b #{c.topic}
-              %p #{c.summary}
-    - elsif defined? @debate.positions.neg.first.speeches
+          %ol
+            - @debate.positions.aff.first.speeches.first.contentions.each do |c|
+              .card-panel
+                %li
+                  %b #{c.topic}
+                  %p #{c.summary}
+                  - if defined? c.arguments && c.arguments.count > 0
+                    %ol
+                      - c.arguments.each do |a|
+                        %li
+                          = a.claim
+                          = a.warrant
+                          = a.impact
+                          = a.citation
+    - elsif defined? @debate.positions.neg.first.speeches #note that this is neg on purpose to keep the formatting pretty
       .col.s12.m12.l3
         .card-panel
           Enter a contention
     - if (defined? @debate.positions.neg.first.speeches)
       .col.s12.m12.l3
         - if defined? @debate.positions.neg.first.speeches.first.contentions
-          - @debate.positions.neg.first.speeches.first.contentions.each do |c|
-            .card-panel
-              %b #{c.topic}
-              %p #{c.summary}
-    - elsif defined? @debate.positions.aff.first.speeches #note that this is
+          %ol
+            - @debate.positions.neg.first.speeches.first.contentions.each do |c|
+              .card-panel
+                %li
+                  %b #{c.topic}
+                  %p #{c.summary}
+                  - if defined? c.arguments && c.arguments.count > 0
+                    %ol
+                      - c.arguments.each do |a|
+                        %li
+                          = a.claim
+                          = a.warrant
+                          = a.impact
+                          = a.citation
+    - elsif defined? @debate.positions.aff.first.speeches #note that this is aff on purpose to keep formatting pretty
       .col.s12.m12.l3
         .card-panel
           Enter a contention
-.row
-  = link_to 'Back', debates_path, class: "waves-effect btn-flat"
-  = link_to 'Edit', edit_debate_path(@debate), class: "waves-effect btn-flat"
-  = link_to 'Delete', debate_path(@debate), method: :delete, class: "waves-effect btn-flat", data: {confirm: "Are you sure you want to delete this debate?"}

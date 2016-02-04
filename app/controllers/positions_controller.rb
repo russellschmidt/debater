@@ -23,7 +23,7 @@ class PositionsController < ApplicationController
   end
 
   def update
-    if @position.update_attributes(position_param)
+    if @position.update(position_param)
       flash[:notice] = "Update successful"
       redirect_to @debate
     else
