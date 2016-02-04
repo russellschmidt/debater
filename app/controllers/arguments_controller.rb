@@ -21,9 +21,23 @@ class ArgumentsController < ApplicationController
   end
 
   def update
+    if @argument.update(argument_param)
+      flash[:notice] = "Update successful"
+      redirect_to edit_speech_path(@argument.contention.speech)
+    else
+      flash[:error] = "Update failed. Please try again"
+      render :edit
+    end
   end
 
   def destroy
+    if @argument.destroy
+      flash[:notice] = "Deletion successful"
+      redirect_to edit_speech_path(@argument.contention.speech)
+    else
+      flash[:error] = "Delete failed. Please try again"
+      render :edit
+    end
   end
 
   private
