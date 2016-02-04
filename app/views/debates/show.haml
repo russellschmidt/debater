@@ -137,31 +137,42 @@
     - if (defined? @debate.positions.aff.first.speeches)
       .col.s12.m12.l3
         - if defined? @debate.positions.aff.first.speeches.first.contentions
-          - @debate.positions.aff.first.speeches.first.contentions.each do |c|
-            %ol
+          %ol
+            - @debate.positions.aff.first.speeches.first.contentions.each do |c|
               .card-panel
                 %li
-                  %p #{c.topic}
+                  %b #{c.topic}
                   %p #{c.summary}
-                  - if defined? c.argument && c.arguments.count > 0
-                    - c.arguments.each do |a|
-                      %li
-                        a.claim
-                        a.warrant
-                        a.impact
-                        a.citation
-    - elsif defined? @debate.positions.neg.first.speeches
+                  - if defined? c.arguments && c.arguments.count > 0
+                    %ol
+                      - c.arguments.each do |a|
+                        %li
+                          = a.claim
+                          = a.warrant
+                          = a.impact
+                          = a.citation
+    - elsif defined? @debate.positions.neg.first.speeches #note that this is neg on purpose to keep the formatting pretty
       .col.s12.m12.l3
         .card-panel
           Enter a contention
     - if (defined? @debate.positions.neg.first.speeches)
       .col.s12.m12.l3
         - if defined? @debate.positions.neg.first.speeches.first.contentions
-          - @debate.positions.neg.first.speeches.first.contentions.each do |c|
-            .card-panel
-              %b #{c.topic}
-              %p #{c.summary}
-    - elsif defined? @debate.positions.aff.first.speeches #note that this is
+          %ol
+            - @debate.positions.neg.first.speeches.first.contentions.each do |c|
+              .card-panel
+                %li
+                  %b #{c.topic}
+                  %p #{c.summary}
+                  - if defined? c.arguments && c.arguments.count > 0
+                    %ol
+                      - c.arguments.each do |a|
+                        %li
+                          = a.claim
+                          = a.warrant
+                          = a.impact
+                          = a.citation
+    - elsif defined? @debate.positions.aff.first.speeches #note that this is aff on purpose to keep formatting pretty
       .col.s12.m12.l3
         .card-panel
           Enter a contention

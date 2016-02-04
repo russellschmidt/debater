@@ -1,14 +1,2 @@
 .container
-  =form_for @argument do |f|
-    =f.label :claim
-    =f.text_field :claim
-    =f.label :warrant
-    =f.text_field :warrant
-    =f.label :impact
-    =f.text_field :impact
-    =f.label :citation
-    =f.text_field :citation
-    =f.hidden_field :contention_id
-    .row
-      =f.submit class:"btn-flat"
-      =link_to "Cancel", edit_speech_path(@argument.contention.speech), class: 'btn-flat'
+  =render partial: "form", locals: {argument: @argument}
