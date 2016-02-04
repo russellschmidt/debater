@@ -1,27 +1,28 @@
-.container
-  .row.s12.l12
-    %h4 Edit speech: #{@speech.speech_name}
-    = form_for @speech do |f|
-      =f.label :speech_name
-      .select-div
-        =f.select :speech_name, collection: @dropdown_options, selected: @speech.speech_name
-      =f.hidden_field :position_id, readonly: true
-      .row
-        =f.submit class: 'btn-flat'
-        =link_to 'Back', debate_path(@speech.position.debate), class: 'btn-flat'
-        =link_to 'Delete', @speech, method: :delete, data: {confirm:"Are you sure? Delete is forever"}, class: "btn-flat yellow"
-  .row.s12.l12
-    %h5 Add Contention
-    =link_to 'new contention', new_speech_contention_path(@speech), class:'btn-flat'
-  .row.s12.l12
-    %h5 Edit Contention
-    %ol
-      - @speech.contentions.each do |c|
-        %li
-          .row
-            = c.topic
-          .row
-            = c.summary
-          .row
-            = link_to 'Edit', edit_speech_contention_path(@speech, c), class: 'btn-flat'
-            = link_to 'Delete', speech_contention_path(@speech, c), method: :delete, class: 'btn-flat yellow', data: {confirm: "Are you sure? Delete is forever."}
+.contention
+  .container
+    .row.s12.l12
+      %h4 Edit speech: #{@speech.speech_name}
+      = form_for @speech do |f|
+        =f.label :speech_name
+        .select-div
+          =f.select :speech_name, collection: @dropdown_options, selected: @speech.speech_name
+        =f.hidden_field :position_id, readonly: true
+        .row
+          =f.submit class: 'btn-flat'
+          =link_to 'Back', debate_path(@speech.position.debate), class: 'btn-flat'
+          =link_to 'Delete', @speech, method: :delete, data: {confirm:"Are you sure? Delete is forever"}, class: "btn-flat yellow"
+    .row.s12.l12
+      %h5 Add Contention
+      =link_to 'new contention', new_speech_contention_path(@speech), class:'btn-flat'
+    .row.s12.l12
+      %h5 Edit Contention
+      %ol.fancy-ol
+        - @speech.contentions.each do |c|
+          %li
+            .row
+              = c.topic
+            .row
+              = c.summary
+            .row
+              = link_to 'Edit', edit_speech_contention_path(@speech, c), class: 'btn-flat'
+              = link_to 'Delete', speech_contention_path(@speech, c), method: :delete, class: 'btn-flat yellow', data: {confirm: "Are you sure? Delete is forever."}
