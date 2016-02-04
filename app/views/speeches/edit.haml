@@ -37,4 +37,6 @@
                         = a.warrant
                         = a.impact
                         = a.citation
-                        = link_to 'Edit', edit_argument_path(a, contention: c), class: 'btn-flat'
+                        .row
+                          = link_to 'Edit', edit_argument_path(a, contention: c), class: 'btn-flat'
+                          = link_to 'Delete', argument_path(a), method: :delete, class: 'btn-flat', data: {confirm: 'OK to delete argument forever'}
