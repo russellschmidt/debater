@@ -4,4 +4,8 @@ class Contention < ActiveRecord::Base
 
   validates :topic, presence: true
   validates :speech_id, presence: true
+
+  def speech
+    self.speech_id
+  end
 end

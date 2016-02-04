@@ -1,12 +1,12 @@
-  .contention
-    .container
-      .row.s12.l12
-        %h4 New speech: #{@speech.speech_name}
-        = form_for @speech do |f|
-          =f.label :speech_name
-          .select-div
-            =f.select :speech_name, collection: @dropdown_options, selected: @speech.speech_name
-          =f.hidden_field :position_id
-          .row
-            =f.submit class: 'btn-flat'
-            =link_to 'Cancel', debates_path, class: 'btn-flat'
+.contention
+  .container
+    .row.s12.l12
+      %h4 New speech: #{@speech.speech_name}
+      = form_for @speech do |f|
+        =f.label :speech_name
+        .select-div
+          =f.select :speech_name, collection: @dropdown_options, selected: @speech.speech_name
+        =f.hidden_field :position_id
+        .row
+          =f.submit class: 'btn-flat'
+          =link_to 'Cancel', debates_path, class: 'btn-flat'

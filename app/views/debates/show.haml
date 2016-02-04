@@ -138,9 +138,18 @@
       .col.s12.m12.l3
         - if defined? @debate.positions.aff.first.speeches.first.contentions
           - @debate.positions.aff.first.speeches.first.contentions.each do |c|
-            .card-panel
-              %b #{c.topic}
-              %p #{c.summary}
+            %ol
+              .card-panel
+                %li
+                  %p #{c.topic}
+                  %p #{c.summary}
+                  - if defined? c.argument && c.arguments.count > 0
+                    - c.arguments.each do |a|
+                      %li
+                        a.claim
+                        a.warrant
+                        a.impact
+                        a.citation
     - elsif defined? @debate.positions.neg.first.speeches
       .col.s12.m12.l3
         .card-panel

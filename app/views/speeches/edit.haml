@@ -16,13 +16,26 @@
       =link_to 'new contention', new_speech_contention_path(@speech), class:'btn-flat'
     .row.s12.l12
       %h5 Edit Contention
-      %ol.fancy-ol
-        - @speech.contentions.each do |c|
+      - @speech.contentions.each do |c|
+        %ol.fancy-ol
           %li
             .row
               = c.topic
             .row
               = c.summary
+            .row
+              - if defined? c.argument && c.arguments.count > 0
+                - c.arguments.each do |a|
+                  %li
+                    .row
+                      = a.claim
+                      = a.warrant
+                      = a.impact
+                      = a.citation
+                      = link_to 'Edit', edit_argument_path(a, contention: c), class: 'btn-flat'
+                      = link_to 'Add Argument', new_argument_path(contention: c), class: 'btn-flat'
+              - else
+                = link_to 'Add Argument', new_argument_path(contention: c), class: 'btn-flat'
             .row
               = link_to 'Edit', edit_speech_contention_path(@speech, c), class: 'btn-flat'
               = link_to 'Delete', speech_contention_path(@speech, c), method: :delete, class: 'btn-flat yellow', data: {confirm: "Are you sure? Delete is forever."}
