@@ -1,0 +1,32 @@
+-if affirmative
+  %dl
+    %h5 Affirmative
+    - if debate.positions.aff.count != 0
+      - debate.positions.aff.each do |p|
+        %dt Value:
+        %dd #{p.value}
+        %dt Criterion:
+        %dd #{p.criterion}
+        %dt Debater:
+        %dd #{p.user.email}
+        =link_to 'edit', edit_debate_position_path(debate, p), class: 'btn-flat'
+        =link_to 'delete', debate_position_path(debate, p), method: :delete, class: 'btn-flat', data: {confirm: "Are you sure? Delete is forever"}
+    - else
+      Awaiting a debater
+      = link_to 'Join', new_debate_position_path(debate, affirmative: true, user: current_user), class: 'btn green'
+-else
+  %dl
+    %h5 Affirmative
+    - if debate.positions.neg.count != 0
+      - debate.positions.neg.each do |p|
+        %dt Value:
+        %dd #{p.value}
+        %dt Criterion:
+        %dd #{p.criterion}
+        %dt Debater:
+        %dd #{p.user.email}
+        =link_to 'edit', edit_debate_position_path(debate, p), class: 'btn-flat'
+        =link_to 'delete', debate_position_path(debate, p), method: :delete, class: 'btn-flat', data: {confirm: "Are you sure? Delete is forever"}
+    - else
+      Awaiting a debater
+      = link_to 'Join', new_debate_position_path(debate, affirmative: false, user: current_user), class: 'btn green'

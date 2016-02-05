@@ -1,0 +1,46 @@
+- if affirmative
+  - if (defined? @debate.positions.aff.first.speeches)
+    .col.s12.m12.l3
+      - if defined? @debate.positions.aff.first.speeches.first.contentions
+        %ol
+          - @debate.positions.aff.first.speeches.first.contentions.each do |c|
+            .card-panel
+              %li
+                %b #{c.topic}
+                %p #{c.summary}
+                - if defined? c.arguments && c.arguments.count > 0
+                  %ol
+                    - c.arguments.each do |a|
+                      %li
+                        = a.claim
+                        = a.warrant
+                        = a.impact
+                        = a.citation
+              = link_to 'Refute', '', class: 'btn-flat' # link to 1NC refutation ****************************
+  - elsif defined? @debate.positions.neg.first.speeches #note that this is neg on purpose to keep the formatting pretty
+    .col.s12.m12.l3
+      .card-panel
+        Enter a contention
+- else
+  - if (defined? @debate.positions.neg.first.speeches)
+    .col.s12.m12.l3
+      - if defined? @debate.positions.neg.first.speeches.first.contentions
+        %ol
+          - @debate.positions.neg.first.speeches.first.contentions.each do |c|
+            .card-panel
+              %li
+                %b #{c.topic}
+                %p #{c.summary}
+                - if defined? c.arguments && c.arguments.count > 0
+                  %ol
+                    - c.arguments.each do |a|
+                      %li
+                        = a.claim
+                        = a.warrant
+                        = a.impact
+                        = a.citation
+              = link_to 'Refute', '', class: 'btn-flat' # link to 1AR refutation ****************************
+  - elsif defined? @debate.positions.aff.first.speeches #note that this is aff on purpose to keep formatting pretty
+    .col.s12.m12.l3
+      .card-panel
+        Enter a contention
