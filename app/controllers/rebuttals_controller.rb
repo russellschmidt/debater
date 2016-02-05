@@ -4,7 +4,11 @@ class RebuttalsController < ApplicationController
   before_action :find_speech_name, only: [:create, :destroy]
 
   def create
-    @rebuttal = Rebuttal.new(contention: params[:contention])
+Rails.logger.info "**************************"
+Rails.logger.info "#{@rebuttal.inspect} before"
+    @rebuttal = Rebuttal.new(params[:contention])
+Rails.logger.info "#{@rebuttal.inspect} after"
+
     if @rebuttal.save
       flash[:notice] = "Rebuttal saved successfully"
       case @speech_name
@@ -33,9 +37,9 @@ class RebuttalsController < ApplicationController
   private
   def find_debate
     contention = Contention.find(params[:contention])
-    speech = Speech.find(contention.speech)
-    position = Position.find(speech.position)
-    @debate = Debate.find(position.debate)
+    speech = Speech.find(contention.speech_id)
+    position = Position.find(speech.position_id)
+    @debate = Debate.find(position.debate_id)
   end
 
   def find_speech
