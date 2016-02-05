@@ -15,18 +15,18 @@
     %h4 Lincoln-Douglas Debate
     %h5 Resolved: #{@debate.resolution}
 .row
-  .col.s12.m12.l3
-    .speech-container
-      .row.card-panel
-        = render partial: 'position', locals: {debate: @debate, affirmative: true}
-  .col.s12.m12.l3
-    .speech-container
-      .row.card-panel
-        = render partial: 'position', locals: {debate: @debate, affirmative: false}
+  = render partial: 'position', locals: {debate: @debate, affirmative: true}
+  = render partial: 'position', locals: {debate: @debate, affirmative: false}
 .row
   =render partial: 'speech', locals: {debate: @debate, affirmative: true}
   =render partial: 'speech', locals: {debate: @debate, affirmative: false}
+  - # render partial: 1AR
+  - # render partial: 1NR
+  - # render partial: 2AR
 .row
   - if defined? @debate.positions
     =render partial: 'contention', locals: {debate: @debate, affirmative: true}
     =render partial: 'contention', locals: {debate: @debate, affirmative: false}
+    - # render partial: 1AR
+    - # render partial: 1NR
+    - # render partial: 2AR
