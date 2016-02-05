@@ -7,4 +7,8 @@ class Speech < ActiveRecord::Base
 
   enum speech_name: [:OneAC, :OneNC, :OneAR, :OneNR, :TwoAR]
 
+  def position
+    self.position
+  end
+
 end

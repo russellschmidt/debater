@@ -4,7 +4,7 @@ class RebuttalsController < ApplicationController
   before_action :find_speech_name, only: [:create, :destroy]
 
   def create
-    @rebuttal = Rebuttal.new(contention_id: params[:contention_id])
+    @rebuttal = Rebuttal.new(contention: params[:contention])
     if @rebuttal.save
       flash[:notice] = "Rebuttal saved successfully"
       case @speech_name
@@ -32,11 +32,14 @@ class RebuttalsController < ApplicationController
 
   private
   def find_debate
-    @debate = params[:debate_id]
+    contention = Contention.find(params[:contention])
+    speech = Speech.find(contention.speech)
+    position = Position.find(speech.position)
+    @debate = Debate.find(position.debate)
   end
 
   def find_speech
-    @speech = params[:speech]
+    @speech = @rebuttal.contention.speech
   end
 
   def find_speech_name
