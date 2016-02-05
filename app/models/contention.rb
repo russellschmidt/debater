@@ -2,6 +2,9 @@ class Contention < ActiveRecord::Base
   has_many :arguments, dependent: :destroy
   belongs_to :speech
 
+  has_many :rebuttals
+  has_many :refutations, through: :rebuttals
+
   validates :topic, presence: true
   validates :speech_id, presence: true
 

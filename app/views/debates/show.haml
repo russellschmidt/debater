@@ -20,9 +20,9 @@
 .row
   =render partial: 'speech', locals: {debate: @debate, affirmative: true}
   =render partial: 'speech', locals: {debate: @debate, affirmative: false}
-  - # render partial: 1AR
-  - # render partial: 1NR
-  - # render partial: 2AR
+  =render partial: 'rebuttal_speech', locals: {debate: @debate, speech_name: 'OneAR'}
+  =render partial: 'rebuttal_speech', locals: {debate: @debate, speech_name: 'OneNR'}
+  =render partial: 'rebuttal_speech', locals: {debate: @debate, speech_name: 'TwoAR'}
 .row
   - if defined? @debate.positions
     =render partial: 'contention', locals: {debate: @debate, affirmative: true}

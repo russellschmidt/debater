@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   resources :arguments, except: [:index, :show]
 
+  resources :rebuttals, only: [:create, :destroy]
+
   root 'greetings#hello'
 
 end
