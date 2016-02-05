@@ -16,7 +16,7 @@
                         = a.warrant
                         = a.impact
                         = a.citation
-  - elsif defined? debate.positions.neg.first.speeches #note that this is neg on purpose to keep the formatting pretty
+  - elsif defined? debate.positions.neg.first.speeches   #note that this is neg on purpose to keep the formatting pretty
     .col.s12.m12.l3
       .card-panel
         Enter a contention
@@ -45,9 +45,9 @@
               .card-panel
                 %li
                   %b #{c.topic}
-                  = link_to 'Refute', rebuttals_path(contention_id: c, debate_id: debate.id, affirmative: false), method: :post, class: 'btn-flat'
+                  = link_to 'Refute', '', class: 'btn-flat' #  , rebuttals_path(debate: debate, contention: c, speech_name: 'OneNC'), method: :post, class: 'btn-flat'
                   - # output the new contention here
-  - elsif defined? debate.positions.aff.first.speeches #note that this is aff on purpose to keep formatting pretty
+  - elsif defined? debate.positions.aff.first.speeches   #note that this is aff on purpose to keep formatting pretty
     .col.s12.m12.l3
       .card-panel
         Enter a contention
