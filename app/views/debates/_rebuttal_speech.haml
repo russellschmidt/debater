@@ -1,0 +1,11 @@
+.col.s12.m12.l2
+  .speech-container
+    .row
+      .card-panel
+        - if speech_name == 'OneAR'
+          %h5 OneAR
+        - elsif speech_name == 'OneNR'
+          %h5 OneNR
+        - elsif speech_name == 'TwoAR'
+          %h5 TwoAR
+        Click the 'refute' button by each of the contentions below to add your rebuttal.

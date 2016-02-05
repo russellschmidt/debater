@@ -42,6 +42,7 @@ class ContentionsController < ApplicationController
     end
   end
 
+
   private
   def find_speech
     @speech = Speech.find(params[:speech_id])
