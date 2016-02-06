@@ -5,9 +5,6 @@ class Contention < ActiveRecord::Base
   has_many :refutations, class_name: "Contention", foreign_key: "assertion_id"
   belongs_to :assertion, class_name: "Contention"
 
-  #has_many :rebuttals
-  #has_many :refutations, through: :rebuttals
-
   validates :topic, presence: true
   validates :speech_id, presence: true
 

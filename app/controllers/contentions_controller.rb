@@ -10,10 +10,10 @@ class ContentionsController < ApplicationController
     @contention = @speech.contentions.create(contention_param)
 
     if @contention.save
-      flash[:notice] = "Position saved"
+      flash[:notice] = "Contention saved"
       redirect_to debate_path(@speech.position.debate)
     else
-      flash[:alert] = "Problem saving your position"
+      flash[:alert] = "Problem saving your contention, try again"
       render :new
     end
   end

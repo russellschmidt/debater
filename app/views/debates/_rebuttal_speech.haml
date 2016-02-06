@@ -2,10 +2,115 @@
   .speech-container
     .row
       .card-panel
+
         - if speech_name == 'OneAR'
-          %h5 OneAR
+          %h5 #{speech_name}
+          -if @debate.positions.aff.count == 0
+            Take the affirmative position to enter your argument
+          - elsif @debate.positions.aff.count > 0
+            - if (defined? @debate.positions.aff.first.speeches) && (@debate.positions.aff.first.speeches.count > 0)
+              - if @debate.positions.aff.first.speeches.select{|s1ar| s1ar.speech_name == 'OneAR'}.count > 0
+                - @debate.positions.aff.first.speeches.select{|s1ar| s1ar.speech_name == 'OneAR'}.each do |s|
+                  %p Click the orange 'edit' button below to add some contentions and examples to prove your point
+                  .fixed-action-btn.horizontal
+                    =link_to '', class: "btn-floating orange darken-3" do
+                      %i.material-icons mode_edit
+                    %ul.floating-options
+                      %li
+                        =link_to edit_speech_path(s), class: "btn-floating red" do
+                          %i.material-icons chat
+                      %li
+                        =link_to @debate, class: "btn-floating yellow" do
+                          %i.material-icons grade
+                      %li
+                        =link_to @debate, class: "btn-floating green" do
+                          %i.material-icons thumb_up
+                      %li
+                        =link_to @debate, class: "btn-floating brown" do
+                          %i.material-icons thumb_down
+              - else
+                Add the #{speech_name} speech by clicking the Add button
+                .fixed-action-btn.horizontal
+                  =link_to '', class: "btn-floating orange darken-3" do
+                    %i.material-icons add
+                  %ul
+                    %li
+                      =link_to new_speech_path(speech_name: speech_name, position: @debate.positions.aff.first), class: "btn-floating red" do
+                        %i.material-icons chat
+            - else
+              Create a Affirmative Constructive speech first
+
+
         - elsif speech_name == 'OneNR'
-          %h5 OneNR
+          %h5 #{speech_name}
+          -if @debate.positions.neg.count == 0
+            Take the negative position to enter your argument
+          - elsif @debate.positions.neg.count > 0
+            - if (defined? @debate.positions.neg.first.speeches) && (@debate.positions.neg.first.speeches.count > 0)
+              - if @debate.positions.neg.first.speeches.select{|s1nr| s1nr.speech_name == 'OneNR'}.count > 0
+                - @debate.positions.neg.first.speeches.select{|s1nr| s1nr.speech_name == 'OneNR'}.each do |s|
+                  %p Click the orange 'edit' button below to add some contentions and examples to prove your point
+                  .fixed-action-btn.horizontal
+                    =link_to '', class: "btn-floating orange darken-3" do
+                      %i.material-icons mode_edit
+                    %ul.floating-options
+                      %li
+                        =link_to edit_speech_path(s), class: "btn-floating red" do
+                          %i.material-icons chat
+                      %li
+                        =link_to @debate, class: "btn-floating yellow" do
+                          %i.material-icons grade
+                      %li
+                        =link_to @debate, class: "btn-floating green" do
+                          %i.material-icons thumb_up
+                      %li
+                        =link_to @debate, class: "btn-floating brown" do
+                          %i.material-icons thumb_down
+              - else
+                Add the #{speech_name} speech by clicking the Add button
+                .fixed-action-btn.horizontal
+                  =link_to '', class: "btn-floating orange darken-3" do
+                    %i.material-icons add
+                  %ul
+                    %li
+                      =link_to new_speech_path(speech_name: speech_name, position: @debate.positions.neg.first), class: "btn-floating red" do
+                        %i.material-icons chat
+            - else
+              Create a Negative Constructive speech first
+
         - elsif speech_name == 'TwoAR'
-          %h5 TwoAR
-        Click the 'refute' button by each of the contentions below to add your rebuttal.
+          %h5 #{speech_name}
+          -if @debate.positions.aff.count == 0
+            Take the affirmative position to enter your argument
+          - elsif @debate.positions.aff.count > 0
+            - if (defined? @debate.positions.aff.first.speeches) && (@debate.positions.aff.first.speeches.count > 0)
+              - if @debate.positions.aff.first.speeches.select{|s2ar| s2ar.speech_name == 'TwoAR'}.count > 0
+                - @debate.positions.aff.first.speeches.select{|s2ar| s2ar.speech_name == 'TwoAR'}.each do |s|
+                  %p Click the orange 'edit' button below to add some contentions and examples to prove your point
+                  .fixed-action-btn.horizontal
+                    =link_to '', class: "btn-floating orange darken-3" do
+                      %i.material-icons mode_edit
+                    %ul.floating-options
+                      %li
+                        =link_to edit_speech_path(s), class: "btn-floating red" do
+                          %i.material-icons chat
+                      %li
+                        =link_to @debate, class: "btn-floating yellow" do
+                          %i.material-icons grade
+                      %li
+                        =link_to @debate, class: "btn-floating green" do
+                          %i.material-icons thumb_up
+                      %li
+                        =link_to @debate, class: "btn-floating brown" do
+                          %i.material-icons thumb_down
+              - else
+                Add the #{speech_name} speech by clicking the Add button
+                .fixed-action-btn.horizontal
+                  =link_to '', class: "btn-floating orange darken-3" do
+                    %i.material-icons add
+                  %ul
+                    %li
+                      =link_to new_speech_path(speech_name: speech_name, position: @debate.positions.aff.first), class: "btn-floating red" do
+                        %i.material-icons chat
+            - else
+              Create a Affirmative Constructive speech first

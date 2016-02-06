@@ -9,12 +9,10 @@ Rails.application.routes.draw do
   end
 
   resources :contentions, only: [] do
-    resources :refutations
+    resources :refutations, except: [:index, :show]
   end
 
   resources :arguments, except: [:index, :show]
-
-  resources :rebuttals, only: [:create, :destroy]
 
   root 'greetings#hello'
 
