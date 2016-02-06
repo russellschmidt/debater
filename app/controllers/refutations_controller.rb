@@ -2,11 +2,11 @@ class RefutationsController < ApplicationController
   before_action :find_speech, only: [:new, :create]
 
   def new
-    @refutation = Contention.new(assertion_id: params[:contention_id], speech_id: params[:speech])
+    @refutation = @speech.contentions.build(assertion_id: params[:contention_id])
   end
 
   def create
-    @refutation = @speech.contentions.create(refutation_param)
+    @refutation = @speech.contention.create(refutation_param)
 
     if @refutation.save
       flash[:notice] = "Refutation saved"

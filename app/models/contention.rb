@@ -2,7 +2,7 @@ class Contention < ActiveRecord::Base
   has_many :arguments, dependent: :destroy
   belongs_to :speech
 
-  has_many :refutations, class_name: "Contention", foreign_key: "assertion_id"
+  has_many :refutations, class_name: "Contention", foreign_key: "assertion_id", dependent: :destroy
   belongs_to :assertion, class_name: "Contention"
 
   validates :topic, presence: true
