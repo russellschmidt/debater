@@ -1,2 +1,12 @@
-Edit Refutation
-= link_to 'back', :back
+.container
+  .row.s12.m12.l12
+    %h5 Edit Refutation
+    =form_for @refutation, as: :refutation, url: contention_refutation_path(contention_id: params[:contention_id], id: params[:id]), method: :put do |f|
+
+      =f.label :topic
+      =f.text_field :topic
+      =f.label :summary
+      =f.text_field :summary
+      .row
+        =f.submit class: 'btn-flat'
+        =link_to 'Cancel', edit_speech_path(@refutation.speech_id), class: 'btn-flat'

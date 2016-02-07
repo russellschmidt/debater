@@ -1,12 +1,13 @@
 .container
   .row.s12.m12.l12
     %h5 New Refutation
-    =form_for [@speech, @refutation] do |f|
+    =form_for @refutation, as: :refutation, url: contention_refutations_path(params[:assertion_id]) do |f|
       =f.label :topic
       =f.text_field :topic
       =f.label :summary
       =f.text_field :summary
       =f.hidden_field :assertion_id
+      =f.hidden_field :speech_id
       .row
         =f.submit class: 'btn-flat'
         =link_to 'Cancel', edit_speech_path(@speech), class: 'btn-flat'
