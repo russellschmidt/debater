@@ -5,6 +5,7 @@ FactoryGirl.define do
     topic   {Faker::Lorem.sentence}
     summary {Faker::Lorem.paragraph}
     speech  {Speech.all.sample}
+    assertion_id nil
   end
 
 end
