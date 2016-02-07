@@ -63,7 +63,7 @@ RSpec.describe ContentionsController, type: :controller do
       new_topic = nil
       put :update, speech_id: my_speech.id, id: my_contention.id, contention: {topic: new_topic, summary: my_contention.summary, speech_id: my_speech.id}
 
-      expect(my_position.criterion).not_to eq nil
+      expect(my_contention.topic).not_to eq nil
     end
   end
 
