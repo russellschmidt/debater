@@ -8,9 +8,11 @@ Rails.application.routes.draw do
     resources :contentions, except: [:index, :show]
   end
 
-  resources :arguments, except: [:index, :show]
+  resources :contentions, only: [] do
+    resources :refutations, except: [:index, :show]
+  end
 
-  resources :rebuttals, only: [:create, :destroy]
+  resources :arguments, except: [:index, :show]
 
   root 'greetings#hello'
 

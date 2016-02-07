@@ -17,7 +17,7 @@
     .row.s12.l12
       %h5 Edit Contention
       %ol.fancy-ol
-        - @speech.contentions.each do |c|
+        - @speech.contentions.select{|c| c.assertion_id == nil}.each do |c|
           %li
             .row
               = c.topic
@@ -40,3 +40,30 @@
                         .row
                           = link_to 'Edit', edit_argument_path(a, contention: c), class: 'btn-flat'
                           = link_to 'Delete', argument_path(a), method: :delete, class: 'btn-flat', data: {confirm: 'OK to delete argument forever'}
+    -if @speech.speech_name == 'OneNC'
+      .row.s12.l12
+        %h5 Rebuttals
+        %ol.fancy-ol
+          - d = @speech.position.debate
+          - d.positions.aff.first.speeches.first.contentions.each do |c|
+            .card-panel
+              %li
+                %p #{c.topic}
+                =link_to 'Add Refutation', new_contention_refutation_path(speech_id: @speech.id, contention_id: c.id, assertion_id: c.id), class: 'btn-flat tiny'
+                - if defined? c.refutations && c.refutations.count > 0
+                  - c.refutations.each do |r|
+                    %p
+                      %i Counter Argument
+                    %b=r.topic
+                    %p=r.summary
+                    .row
+                      = link_to 'Edit Refutation', edit_contention_refutation_path(id: r.id, contention_id: c.id), class: 'btn-flat tiny'
+                      = link_to 'Delete Refutation', contention_refutation_path(contention_id: r.id), method: :delete, class: 'btn-flat tiny'
+                    - if defined? r.arguments && r.arguments.count > 0
+                      %ol
+                        - r.arguments.each do |ra|
+                          %li
+                            %p=ra.claim
+                            %p=ra.warrant
+                            %p=ra.impact
+                            %p=ra.citation

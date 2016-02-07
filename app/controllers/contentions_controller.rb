@@ -1,5 +1,5 @@
 class ContentionsController < ApplicationController
-  before_action :find_speech, only: [:new, :create, :edit, :update, :destroy]
+  before_action :find_speech, only: [:new, :create, :edit, :update, :destroy, :new_refutation, :create_refutation]
   before_action :find_contention, only: [:edit, :update, :destroy]
 
   def new
@@ -10,10 +10,10 @@ class ContentionsController < ApplicationController
     @contention = @speech.contentions.create(contention_param)
 
     if @contention.save
-      flash[:notice] = "Position saved"
+      flash[:notice] = "Contention saved"
       redirect_to debate_path(@speech.position.debate)
     else
-      flash[:alert] = "Problem saving your position"
+      flash[:alert] = "Problem saving your contention, try again"
       render :new
     end
   end
@@ -42,7 +42,6 @@ class ContentionsController < ApplicationController
     end
   end
 
-
   private
   def find_speech
     @speech = Speech.find(params[:speech_id])
@@ -55,4 +54,5 @@ class ContentionsController < ApplicationController
   def contention_param
     params.require(:contention).permit(:topic, :summary, :speech_id)
   end
+
 end

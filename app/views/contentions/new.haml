@@ -5,6 +5,7 @@
     =f.text_field :topic
     =f.label :summary
     =f.text_area :summary
+    =f.hidden_field :assertion_id
     .row
       =f.submit class: 'btn-flat'
       =link_to 'Cancel', edit_speech_path(@speech), class: 'btn-flat'

@@ -26,27 +26,40 @@
       - if defined? debate.positions.neg.first.speeches.first.contentions
         %ol
           - debate.positions.neg.first.speeches.first.contentions.each do |c|
-            .card-panel
-              %li
-                %b #{c.topic}
-                %p #{c.summary}
-                - if defined? c.arguments && c.arguments.count > 0
-                  %ol
-                    - c.arguments.each do |a|
-                      %li
-                        = a.claim
-                        = a.warrant
-                        = a.impact
-                        = a.citation
-        %h5 Rebuttals
+            - if c.assertion_id == nil
+              .card-panel
+                %li
+                  %b #{c.topic}
+                  %p #{c.summary}
+                  - if defined? c.arguments && c.arguments.count > 0
+                    %ol
+                      - c.arguments.each do |a|
+                        %li
+                          = a.claim
+                          = a.warrant
+                          = a.impact
+                          = a.citation
+        %h5 Rebuttals to Affirmative
         %ol
           - if defined? debate.positions.aff.first.speeches
             - debate.positions.aff.first.speeches.first.contentions.each do |c|
               .card-panel
                 %li
-                  %b #{c.topic}
-                  = link_to 'Refute', '', class: 'btn-flat' #  , rebuttals_path(debate: debate, contention: c, speech_name: 'OneNC'), method: :post, class: 'btn-flat'
-                  - # output the new contention here
+                  %p #{c.topic}
+                  - if defined? c.refutations && c.refutations.count > 0
+                    - c.refutations.each do |r|
+                      %p
+                        %i Counter Argument
+                      %b=r.topic
+                      %p=r.summary
+                      - if defined? r.arguments && r.arguments.count > 0
+                        %ol
+                          - r.arguments.each do |ra|
+                            %li
+                              %p=ra.claim
+                              %p=ra.warrant
+                              %p=ra.impact
+                              %p=ra.citation
   - elsif defined? debate.positions.aff.first.speeches   #note that this is aff on purpose to keep formatting pretty
     .col.s12.m12.l3
       .card-panel

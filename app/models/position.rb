@@ -10,7 +10,7 @@ class Position < ActiveRecord::Base
   scope :aff, -> {where(affirmative: true) }
   scope :neg, -> {where(affirmative: false) }
 
-  def debate
-    self.debate_id
-  end
+  #def debate
+  #  self.debate_id
+  #end
 end

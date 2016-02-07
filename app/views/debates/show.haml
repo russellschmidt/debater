@@ -15,18 +15,17 @@
     %h4 Lincoln-Douglas Debate
     %h5 Resolved: #{@debate.resolution}
 .row
-  = render partial: 'position', locals: {debate: @debate, affirmative: true}
-  = render partial: 'position', locals: {debate: @debate, affirmative: false}
+  - [true, false].each do |t|
+    = render partial: 'position', locals: {debate: @debate, affirmative: t}
 .row
-  =render partial: 'speech', locals: {debate: @debate, affirmative: true}
-  =render partial: 'speech', locals: {debate: @debate, affirmative: false}
-  =render partial: 'rebuttal_speech', locals: {debate: @debate, speech_name: 'OneAR'}
-  =render partial: 'rebuttal_speech', locals: {debate: @debate, speech_name: 'OneNR'}
-  =render partial: 'rebuttal_speech', locals: {debate: @debate, speech_name: 'TwoAR'}
+  - [true, false].each do |t|
+    =render partial: 'speech', locals: {debate: @debate, affirmative: t}
+  - ['OneAR', 'OneNR', 'TwoAR'].each do |t|
+    = render partial: 'rebuttal_speech', locals: {debate: @debate, speech_name: t}
 .row
   - if defined? @debate.positions
-    =render partial: 'contention', locals: {debate: @debate, affirmative: true}
-    =render partial: 'contention', locals: {debate: @debate, affirmative: false}
+    - [true, false].each do |t|
+      =render partial: 'contention', locals: {debate: @debate, affirmative: t}
     - # render partial: 1AR
     - # render partial: 1NR
     - # render partial: 2AR
