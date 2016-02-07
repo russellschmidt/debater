@@ -49,15 +49,16 @@
             .card-panel
               %li
                 %p #{c.topic}
-                =link_to 'new contention', new_contention_refutation_path(speech_id: @speech.id, contention_id: c.id, assertion_id: c.id), class: 'btn-flat'
+                =link_to 'Add Refutation', new_contention_refutation_path(speech_id: @speech.id, contention_id: c.id, assertion_id: c.id), class: 'btn-flat tiny'
                 - if defined? c.refutations && c.refutations.count > 0
                   - c.refutations.each do |r|
                     %p
                       %i Counter Argument
                     %b=r.topic
                     %p=r.summary
-
-                    = link_to 'edit refutation', edit_contention_refutation_path(id: r.id, contention_id: c.id)
+                    .row
+                      = link_to 'Edit Refutation', edit_contention_refutation_path(id: r.id, contention_id: c.id), class: 'btn-flat tiny'
+                      = link_to 'Delete Refutation', contention_refutation_path(contention_id: r.id), method: :delete, class: 'btn-flat tiny'
                     - if defined? r.arguments && r.arguments.count > 0
                       %ol
                         - r.arguments.each do |ra|

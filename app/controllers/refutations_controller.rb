@@ -35,6 +35,14 @@ class RefutationsController < ApplicationController
   end
 
   def destroy
+    @refutation = Contention.find(params[:contention_id])
+    if @refutation.destroy
+      flash[:notice] = "Refutation updated"
+      redirect_to edit_speech_path(@refutation.speech)
+    else
+      flash[:alert] = "Problem updating your refutation"
+      render :edit
+    end
   end
 
   def find_speech
